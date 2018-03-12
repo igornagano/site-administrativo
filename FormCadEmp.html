@@ -1,0 +1,90 @@
+<html>
+	<head>
+	    <!-- load bootstrap css -->
+	    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"> 
+	    <link href="Form.css" media="screen" rel="stylesheet" type="text/css" />
+
+	    <!-- load angularJS -->
+	
+	</head>
+
+		<!-- aplicar app angular e controlador para o nosso body -->
+		<header id="cab">
+            <nav>
+            	<ul class="menu">
+            		<li><a href= "FormCadFunc.html" class="CadastroFun"> Cadastro de Funcionarios</a></li>
+            		<li><a href= "FormCadEmp.html" class="CadastroEmp"> Cadastro de Empresa</a></li>
+            		<li><a href= "FormCadEstab.html" class="CadastroEstab"> Cadastro de Estabelecimento</a></li>
+               	</ul>
+            </nav>
+        </header>
+
+
+	<body ng-app="validationApp" ng-controller="mainController">
+    	<div class="container">  	
+    		<section id="latdir">
+
+        		<div class="col-sm-8 col-sm-offset-2">
+            
+		            <!-- PAGE HEADER -->		                 
+		            <!-- FORM -->
+		            <!-- passa a variável se nosso formulário é válida ou inválida -->
+		            <!-- novalidate isso vai evitar a validação padrão do HTML5, já que vamos fazer isso usando o Angular -->
+
+		            <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate> 
+
+		            	<div>
+		            		<h1>Cadastro de Empresas</h1>
+		            	</div>
+		               
+		                <div class="form-group">
+		                    <label>Nome</label>
+		                    <input type="text" name="name" class="form-control" ng-model="name" required>
+		                </div>
+
+		                <div class="form-group">
+		                    <label>Nome Fantasia</label>
+		                    <input type="text" name="nameFant" class="form-control" ng-model="name Fantasia" required>
+		                </div>
+
+		               
+		                <div class="form-group">
+		                    <label>Email</label>
+		                    <input type="email" name="email" class="form-control" ng-model="email" placeholder="Informe o email" required>
+		                </div>
+
+		                <div class="form-group">
+		                    <label>CNPJ</label>
+		                    <input type="text" name="cnpj" class="form-control" ng-model="cpf" ng-maxlength="14" placeholder="##.###.### / ####-##" required>
+		                </div>
+
+		               
+		                <div class="form-group">
+		                    <label>Telefone</label>
+		                    <input type="text" name="telefone" class="form-control" ng-model="telefone" ng-minlength="13" ng-maxlength="13" required>
+		                </div>
+
+		                <div class="form-group">
+		                    <label>Nome Proprietário</label>
+		                    <input type="text" name="nameProp" class="form-control" ng-model="name Proprietário" required>
+		                </div>
+
+
+		                <div class="form-group">
+		                    <label>CPF</label>
+		                    <input type="text" name="cpf" class="form-control" ng-model="cpf" required>
+		                </div>
+
+		                <!-- SUBMIT BUTTON -->
+		                <button type="submit" class="btn btn-primary">Enviar</button>
+
+		            </form>	  
+		         </div><!-- col-sm-8 -->      
+        	</section>      
+    	</div><!-- /container -->
+
+		<footer  id="rodape" >
+				<h2>Vagas on-line</h2>		
+		</footer>
+	</body>
+</html>
