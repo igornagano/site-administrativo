@@ -1,0 +1,69 @@
+<div [@routerTransition]>
+   
+	<div ng-app="validationApp" ng-controller="mainController">
+    
+    	<div class="container">  	
+    		<section id="latdir">
+
+        		<div class="col-sm-8 col-sm-offset-2">
+            
+		            <!-- PAGE HEADER -->		                 
+		            <!-- FORM -->
+		            <!-- passa a variável se nosso formulário é válida ou inválida -->
+		            <!-- novalidate isso vai evitar a validação padrão do HTML5, já que vamos fazer isso usando o Angular -->
+
+		            <form (ngSubmit)='onSubmit()' #formulario> 
+
+		            	<div>
+		            		<h1>Cadastro de Empresas</h1>
+		            	</div>
+		               
+		                <div class="form-group" >
+		                    <label>Nome</label>
+		                    <span>
+		                    <input type="text" class="form-control" id="nome" required [(ngModel)]="model.nome" name="nome" #nome="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
+		                </div>
+
+		                <div class="form-group">
+		                    <label>Nome Fantasia</label>
+		                    <input type="text" name="nameFant" class="form-control" required [(ngModel)]="model.nomeFantasia" #nomeFantasia="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                </div>
+
+		               
+		                <div class="form-group">
+		                    <label>Email</label>
+		                    <input type="email" name="email" class="form-control" placeholder="Informe o email" required [(ngModel)]="model.email" #email="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                </div>
+
+		                <div class="form-group">
+		                    <label>CNPJ</label>
+		                    <input type="text" name="cnpj" class="form-control" ng-maxlength="14" placeholder="##.###.### / ####-##" required [(ngModel)]="model.cnpj" #cnpj="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                </div>
+
+		               
+		                <div class="form-group">
+		                    <label>Telefone</label>
+		                    <input type="text" name="telefone" class="form-control" ng-minlength="13" ng-maxlength="13" required [(ngModel)]="model.telefone" #telefone="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                </div>
+
+		                <div class="form-group">
+		                    <label>Nome Proprietário</label>
+		                    <input type="text" name="nameProprietario" class="form-control" required  [(ngModel)]="model.nomeProprietario" #nomeProprietario="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                </div>
+
+
+		                <div class="form-group">
+		                    <label>CPF</label>
+		                    <input type="text" name="cpf" class="form-control" ng-model="cpf" required [(ngModel)]="model.cpf" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                </div>
+
+		                <!-- SUBMIT BUTTON -->
+		                <button type="submit" class="btn btn-primary">Enviar</button>
+
+		            </form>	  
+		         </div><!-- col-sm-8 -->      
+        	</section>      
+    	</div><!-- /container -->
+</div>
+
+ <router-outlet></router-outlet>
