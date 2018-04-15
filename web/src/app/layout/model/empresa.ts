@@ -1,12 +1,12 @@
 export class Empresa {
 	private id;
 	public nome;
-		public email;
-		public cpf;
-		public telefone;
-		public nomeFantasia;
-		public nomeProprietario;
-		public cnpj;
+	public email;
+	public cpf;
+	public telefone;
+	public nomeFantasia;
+	public nomeProprietario;
+	public cnpj;
 	constructor( 
 		nome,
 		email,

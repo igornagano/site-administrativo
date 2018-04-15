@@ -28,14 +28,22 @@ export class EmpresaService {
   }
 
  getDados(id) {
-    return this.http.get("ec2-18-231-173-45.sa-east-1.compute.amazonaws.com:8000/empresa/"+id)
+    return this.http.get("http://localhost:8000/empresa/"+id)
     	.pipe(
             map(res=>res)
         )
  } 
+ getAll() {
+    return this.http.get("http://localhost:8000/empresa")
+    	.pipe(
+            map(res=>res)
+        )
+ } 
+
  putDados(empresa){
  	this.empresa = empresa;
- 	return this.http.put("http://localhost:8000/empresa/"+this.empresa['id_empresa'], this.empresa,httpOptions).pipe(
+ 	return this.http.put("http://localhost:8000/empresa/"+this.empresa['id_empresa'], this.empresa,httpOptions)
+      .pipe(
             map(res=>res)
         )
  }    
@@ -50,11 +58,11 @@ export class EmpresaService {
   	this.usuario['telefone'] = empresa.telefone;
   	this.usuario['senha'] = "teste123456";
 
- 	this.http.post("http://localhost:8000/empresa",  this.empresa).subscribe(data => {    
+ 	    this.http.post("http://localhost:8000/empresa",  this.empresa).subscribe(data => {    
 	    this.usuario['id_empresa'] = data['id_empresa'];
 	    this.http.post("http://localhost:8000/colaborador", this.usuario,httpOptions).subscribe(data => {
-	    	this.gestor['id_colaborador'] = data['id_colaborador'];
-	    	this.http.post("http://localhost:8000/gestor", this.gestor,httpOptions).subscribe(data => {
+	    this.gestor['id_colaborador'] = data['id_colaborador'];
+	    this.http.post("http://localhost:8000/gestor", this.gestor,httpOptions).subscribe(data => {
 	    		
 			});
 		});

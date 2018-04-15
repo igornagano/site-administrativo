@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { EmpresaService } from '../../service/empresa.service';
-import { Empresa } from '../../model/empresa';
+import { ColaboradorService } from '../../service/colaborador.service';
+import { Colaborador } from '../../model/colaborador';
 import { routerTransition } from '../../../router.animations';
 
 @Component({
-  selector: 'app-dados',
-  templateUrl: './dados.component.html',
-  styleUrls: ['./dados.component.scss'],
+  selector: 'app-dados-colab',
+  templateUrl: './dados-colab.component.html',
+  styleUrls: ['./dados-colab.component.scss'],
   animations: [routerTransition()]
 })
-export class DadosComponent implements OnInit {
+export class DadosColabComponent implements OnInit {
 
- 	dados={};
-  model = new Empresa('Teste Nome', 'Teste Email', 'Teste CPF', 'Teste Telefone','Nome Fantasia', 'Nome Proprietario', 'CNPJ');
+  dados={};
+  model = new Colaborador('','','','','','','');
 
   submitted = false;
 
@@ -24,11 +24,12 @@ export class DadosComponent implements OnInit {
   pegardados(){
     console.log(this.dados);
   }
-  constructor(private http: HttpClient,private empresaService: EmpresaService) {
+
+  constructor(private http: HttpClient,private colaboradorService: ColaboradorService) {
   }
- 	
-  ngOnInit(): void {
-       this.empresaService.getDados('1').subscribe(
+
+ ngOnInit(): void {
+       this.colaboradorService.getDados('1').subscribe(
                       data => this.dados = data)
   		 /*this.http.get("http://localhost:8000/cliente/usuario/teste2@teste.com").subscribe(data => {
           console.log(data);
@@ -36,4 +37,3 @@ export class DadosComponent implements OnInit {
   	  })*/
   	}
 }
-  

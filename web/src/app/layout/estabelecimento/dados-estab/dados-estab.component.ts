@@ -4,7 +4,6 @@ import { EstabelecimentoService } from '../../service/estabelecimento.service';
 import { Estabelecimento } from '../../model/estabelecimento';
 import { routerTransition } from '../../../router.animations';
 
-
 @Component({
   selector: 'app-dados-estab',
   templateUrl: './dados-estab.component.html',
@@ -14,7 +13,7 @@ import { routerTransition } from '../../../router.animations';
 export class DadosEstabComponent implements OnInit {
 
 	dados={};
-  model = new Estabelecimento('Unidade','Endereco','2');
+  model = new Estabelecimento('','','');
 
   submitted = false;
 
@@ -30,12 +29,11 @@ export class DadosEstabComponent implements OnInit {
   }
 
  ngOnInit(): void {
-       this.estabelecimentoService.getDados('2').subscribe(
+       this.estabelecimentoService.getDados('1').subscribe(
                       data => this.dados = data)
   		 /*this.http.get("http://localhost:8000/cliente/usuario/teste2@teste.com").subscribe(data => {
           console.log(data);
   	  		this.dados = data;
   	  })*/
   	}
-2
 }

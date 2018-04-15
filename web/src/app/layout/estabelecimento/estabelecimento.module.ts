@@ -6,6 +6,7 @@ import { EstabelecimentoComponent } from './estabelecimento.component';
 import { PageHeaderModule } from './../../shared';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
     imports: [CommonModule, EstabelecimentoRoutingModule, PageHeaderModule, FormsModule],
     declarations: [EstabelecimentoComponent]

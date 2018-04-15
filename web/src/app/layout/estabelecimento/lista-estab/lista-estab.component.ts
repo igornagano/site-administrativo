@@ -2,22 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { Estabelecimento } from '../../model/estabelecimento';
 import { EstabelecimentoService } from '../../service/estabelecimento.service';
 import { routerTransition } from '../../../router.animations';
+import "rxjs/add/operator/map"; 
 
 @Component({
-  selector: 'app-estab-cadastro',
-  templateUrl: './estab-cadastro.component.html',
-  styleUrls: ['./estab-cadastro.component.scss'],
+  selector: 'app-lista-estab',
+  templateUrl: './lista-estab.component.html',
+  styleUrls: ['./lista-estab.component.scss'],
   animations: [routerTransition()]
 })
-export class EstabCadastroComponent implements OnInit {
-  model = new Estabelecimento('','','1');
+export class ListaEstabComponent implements OnInit {
+
+  model
 
   submitted = false;
 
-
   onSubmit(){
-    this.estabelecimentoService.setDados(this.model);
-    console.log('erro component')
    
   }
 
@@ -26,9 +25,10 @@ export class EstabCadastroComponent implements OnInit {
   }
 
   constructor(private estabelecimentoService: EstabelecimentoService) {
-   }
+  }
 
-  ngOnInit() {   
+  ngOnInit() {
+  		this.model = this.estabelecimentoService.getAll().map(res => res);
   }
 
   print(){

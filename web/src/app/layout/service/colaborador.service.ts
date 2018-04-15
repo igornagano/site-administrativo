@@ -26,11 +26,20 @@ export class ColaboradorService {
   }
 
  getDados(id) {
-    return this.http.get("ec2-18-231-173-45.sa-east-1.compute.amazonaws.com:8000/colaborador/"+id)
+    //return this.http.get("ec2-18-231-173-45.sa-east-1.compute.amazonaws.com:8000/colaborador/"+id)
+    return this.http.get("http://localhost:8000/colaborador/"+id)
     	.pipe(
-            map(res=>res)
+            map(res=>res) 
         )
  } 
+
+ getAll(id) {
+    return this.http.get("http://localhost:8000/colaborador")
+    	.pipe(
+            map(res=>res) 
+        )
+ } 
+
  putDados(colaborador){
  	this.colaborador = colaborador;
  	return this.http.put("http://localhost:8000/colaborador/"+this.colaborador['id_colaborador'], this.colaborador,httpOptions).pipe(
@@ -38,9 +47,14 @@ export class ColaboradorService {
         )
  }    
  setDados(colaborador){
- 	this.colaborador = colaborador
- 	return this.http.post("http://localhost:8000/colaborador",  this.colaborador).pipe(
-            map(res=>res)
+    this.colaborador['nome'] = colaborador.nome;
+    this.colaborador['email'] = colaborador.email;
+    this.colaborador['senha'] = colaborador.senha;
+    this.colaborador['cpf'] = colaborador.cpf;
+    this.colaborador['telefone'] = colaborador.telefone;
+    
+   return this.http.post("http://localhost:8000/colaborador",  this.colaborador).pipe(
+         map(res=>res)
         )
 	}
 }

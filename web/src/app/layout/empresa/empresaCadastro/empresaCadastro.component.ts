@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Empresa } from '../../model/empresa';
 import { EmpresaService } from '../../service/empresa.service';
 import { routerTransition } from '../../../router.animations';
+
 @Component({
   selector: 'app-empresa',
   templateUrl: './empresaCadastro.component.html',

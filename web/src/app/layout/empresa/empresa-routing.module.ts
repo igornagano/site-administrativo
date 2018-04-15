@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EmpresaComponent } from './empresa.component';
+import { DadosComponent } from './dados/dados.component';
 
 const routes: Routes = [
     {
@@ -11,7 +12,6 @@ const routes: Routes = [
             { path: 'dados', loadChildren: './dados/dados.module#DadosModule' },
             { path: 'alterar/:id', loadChildren: './empresa-alterar/empresa-alterar.module#EmpresaAlterarModule' },
             { path: 'lista', loadChildren: './lista/lista.module#ListaModule' },
-            
         ]
     }
 ];

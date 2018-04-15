@@ -4,8 +4,7 @@ import { DadosEstabComponent } from './dados-estab.component';
 
 const routes: Routes = [
     {
-        path: '', 
-        component: DadosEstabComponent
+        path: '', component: DadosEstabComponent
     }
 ];
 

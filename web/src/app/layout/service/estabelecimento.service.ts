@@ -25,20 +25,32 @@ export class EstabelecimentoService {
   }
 
  getDados(id) {
-    return this.http.get("ec2-18-231-173-45.sa-east-1.compute.amazonaws.com:8000/estabelecimento/"+id)
+    return this.http.get("http://localhost:8000/estabelecimento/"+id)
     	.pipe(
             map(res=>res)
         )
  } 
+
+ getAll() {
+    return this.http.get("http://localhost:8000/estabelecimento")
+    	.pipe(
+            map(res=>res)
+        )
+ } 
+
  putDados(estabelecimento){
  	this.estabelecimento = estabelecimento;
- 	return this.http.put("http://localhost:8000/estabelecimento/"+this.estabelecimento['id_estabelecimento'], this.estabelecimento,httpOptions).pipe(
+ 	return this.http.put("http://localhost:8000/estabelecimento/"+this.estabelecimento['id_estabelecimento'], 
+        this.estabelecimento,httpOptions)
+        .pipe(
             map(res=>res)
         )
  }    
  setDados(estabelecimento){
  	this.estabelecimento = estabelecimento
- 	return this.http.post("http://localhost:8000/estabelecimento",  this.estabelecimento).pipe(
+        console.log('erro service')
+    	return this.http.post("http://localhost:8000/estabelecimento",this.estabelecimento)
+        .pipe(
             map(res=>res)
         )
 	}

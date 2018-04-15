@@ -10,6 +10,8 @@ const routes: Routes = [
         children: [
         	{ path: 'cadastro', loadChildren: './estabCadastro/estab-cadastro.module#EstabCadastroModule' },
             { path: 'dados', loadChildren: './dados-estab/dados-estab.module#DadosEstabModule' },
+            { path: 'alterar/:id', loadChildren: './estab-altera/estab-altera.module#EstabAlteraModule' },
+            { path: 'lista', loadChildren: './lista-estab/lista-estab.module#ListaEstabModule' },
         ]
     }
 ];
