@@ -47,8 +47,8 @@ export class EstabelecimentoService {
         )
  }    
  setDados(estabelecimento){
- 	this.estabelecimento = estabelecimento
-        console.log('erro service')
+ 	this.estabelecimento = estabelecimento;
+        console.log(estabelecimento);
     	return this.http.post("http://localhost:8000/estabelecimento",this.estabelecimento)
         .pipe(
             map(res=>res)
