@@ -29,7 +29,7 @@ export class DadosColabComponent implements OnInit {
   }
 
  ngOnInit(): void {
-       this.colaboradorService.getDados('1').subscribe(
+       this.colaboradorService.getDados('5').subscribe(
                       data => this.dados = data)
   		 /*this.http.get("http://localhost:8000/cliente/usuario/teste2@teste.com").subscribe(data => {
           console.log(data);
