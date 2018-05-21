@@ -3,8 +3,7 @@ import {HttpClient,HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { Colaborador } from '../model/colaborador';
-const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 @Injectable()
@@ -33,7 +32,8 @@ export class ColaboradorService {
         )
  } 
 
- getAll(id) {
+ getAll() {
+    console.log("aqui")
     return this.http.get("http://localhost:8000/colaborador")
     	.pipe(
             map(res=>res) 
@@ -42,7 +42,8 @@ export class ColaboradorService {
 
  putDados(colaborador){
  	this.colaborador = colaborador;
- 	return this.http.put("http://localhost:8000/colaborador/"+this.colaborador['id_colaborador'], this.colaborador,httpOptions).pipe(
+ 	return this.http.put("http://localhost:8000/colaborador/"+this.colaborador['id_colaborador'],this.colaborador,httpOptions)
+        .pipe(
             map(res=>res)
         )
  }    
@@ -53,8 +54,8 @@ export class ColaboradorService {
     this.colaborador['cpf'] = colaborador.cpf;
     this.colaborador['telefone'] = colaborador.telefone;
     
-   return this.http.post("http://localhost:8000/colaborador",  this.colaborador).pipe(
-         map(res=>res)
-        )
+   return this.http.post("http://localhost:8000/colaborador",  this.colaborador).subscribe(data => {
+        this.colaborador['id_colaborador'] = data['id_colaborador'];
+        });
 	}
 }

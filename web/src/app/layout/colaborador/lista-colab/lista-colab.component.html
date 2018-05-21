@@ -9,7 +9,7 @@
 				<div class="card-body" id="corpo" *ngFor="let colaborador of model | async">
 					<div>
 						<div align="right"><a [routerLink]="['/colaborador/alterar/', 
-							colaborador.id_usuario]">Editar</a></div>
+							colaborador.id_empresa]">Editar</a></div>
 						<h4>Nome: {{ colaborador.nome }}</h4><br>
 						{{ colaborador.telefone}}
   					</div>					

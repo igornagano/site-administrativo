@@ -3,8 +3,7 @@ import {HttpClient,HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { Estabelecimento } from '../model/estabelecimento';
-const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 @Injectable()
@@ -47,11 +46,10 @@ export class EstabelecimentoService {
         )
  }    
  setDados(estabelecimento){
- 	this.estabelecimento = estabelecimento;
-        console.log(estabelecimento);
-    	return this.http.post("http://localhost:8000/estabelecimento",this.estabelecimento)
-        .pipe(
-            map(res=>res)
-        )
+ 	this.estabelecimento = estabelecimento
+        console.log('erro service')
+    	return this.http.post("http://localhost:8000/estabelecimento",this.estabelecimento).subscribe(data => {
+
+        });
 	}
 }

@@ -1,4 +1,8 @@
 <div [@routerTransition]>
+
+	<script type="text/javascript" 
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js">
+	</script>
    
 	<div ng-app="validationApp" ng-controller="mainController">
     
@@ -11,6 +15,13 @@
 		            <!-- FORM -->
 		            <!-- passa a variável se nosso formulário é válida ou inválida -->
 		            <!-- novalidate isso vai evitar a validação padrão do HTML5, já que vamos fazer isso usando o Angular -->
+
+		            <script>
+					    $(document).ready(function () { 
+					        var $cpf = $("#CPF");
+					        $cpf.mask('000.000.000-00', {reverse: true});
+					    });
+					</script>
 
 		            <form (ngSubmit)='onSubmit()' #formulario> 
 
@@ -54,7 +65,7 @@
 
 		                <div class="form-group">
 		                    <label>CPF</label>
-		                    <input type="text" name="cpf" class="form-control" ng-model="cpf" required [(ngModel)]="model.cpf" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                    <input type="text" name="CPF" id="cpf" class="form-control" ng-model="cpf" required [(ngModel)]="model.cpf" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
 
 		                <!-- SUBMIT BUTTON -->

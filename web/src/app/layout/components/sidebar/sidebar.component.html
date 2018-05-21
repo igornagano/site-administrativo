@@ -6,6 +6,26 @@
         <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'Charts' | translate }}
         </a>
+
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('colaborador')">
+                <span><i class="fa fa-plus"></i>&nbsp; {{ 'Colaborador' | translate }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'colaborador'">
+                <ul class="submenu">
+                    <li>
+                       <a [routerLink]="['/colaborador/cadastro']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span>{{ 'Cadastro' | translate }}</span></a>
+                    </li>
+                    <li>
+                       <a [routerLink]="['/colaborador/dados']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span>{{ 'Dados' | translate }}</span></a>
+                    </li>
+                    <li>
+                       <a [routerLink]="['/colaborador/lista']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span>{{ 'Lista' | translate }}</span></a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+
          <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('empresa')">
                 <span><i class="fa fa-plus"></i>&nbsp; {{ 'Empresa' | translate }}</span>
@@ -45,19 +65,19 @@
         </div>
 
         <div class="nested-menu">
-            <a class="list-group-item" (click)="addExpandClass('colaborador')">
-                <span><i class="fa fa-plus"></i>&nbsp; {{ 'Colaborador' | translate }}</span>
+            <a class="list-group-item" (click)="addExpandClass('vaga')">
+                <span><i class="fa fa-plus"></i>&nbsp; {{ 'Vaga' | translate }}</span>
             </a>
-            <li class="nested" [class.expand]="showMenu === 'colaborador'">
+            <li class="nested" [class.expand]="showMenu === 'vaga'">
                 <ul class="submenu">
                     <li>
-                       <a [routerLink]="['/colaborador/cadastro']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span>{{ 'Cadastro' | translate }}</span></a>
+                       <a [routerLink]="['/vaga/cadastro']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span>{{ 'Cadastro' | translate }}</span></a>
                     </li>
                     <li>
-                       <a [routerLink]="['/colaborador/dados']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span>{{ 'Dados' | translate }}</span></a>
+                       <a [routerLink]="['/vaga/dados']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span>{{ 'Dados' | translate }}</span></a>
                     </li>
                     <li>
-                       <a [routerLink]="['/colaborador/lista']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span>{{ 'Lista' | translate }}</span></a>
+                       <a [routerLink]="['/vaga/lista']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span>{{ 'Lista' | translate }}</span></a>
                     </li>
                 </ul>
             </li>

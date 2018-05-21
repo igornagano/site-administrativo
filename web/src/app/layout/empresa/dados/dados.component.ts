@@ -13,7 +13,9 @@ import { routerTransition } from '../../../router.animations';
 export class DadosComponent implements OnInit {
 
  	dados={};
-  model = new Empresa('Teste Nome', 'Teste Email', 'Teste CPF', 'Teste Telefone','Nome Fantasia', 'Nome Proprietario', 'CNPJ');
+  //model = new Empresa('Teste Nome', 'Teste Email', 'Teste CPF', 'Teste Telefone','Nome Fantasia', 
+   // 'Nome Proprietario', 'CNPJ');
+   model = new Empresa('','','','','','','');
 
   submitted = false;
 
