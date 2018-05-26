@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { ColaboradorService } from '../../service/colaborador.service';
-import { Colaborador } from '../../model/colaborador';
+import { VagaService } from '../../service/vaga.service';
+import { Vaga } from '../../model/vaga';
 import { routerTransition } from '../../../router.animations';
 
 @Component({
-  selector: 'app-dados-colab',
-  templateUrl: './dados-colab.component.html',
-  styleUrls: ['./dados-colab.component.scss'],
+  selector: 'app-dados-vaga',
+  templateUrl: './dados-vaga.component.html',
+  styleUrls: ['./dados-vaga.component.scss'],
   animations: [routerTransition()]
 })
-export class DadosColabComponent implements OnInit {
+export class DadosVagaComponent implements OnInit {
 
   dados={};
-  model = new Colaborador('','','','','','','');
+  model = new Vaga('','','','','');
 
   submitted = false;
 
@@ -25,15 +25,16 @@ export class DadosColabComponent implements OnInit {
     console.log(this.dados);
   }
 
-  constructor(private http: HttpClient,private colaboradorService: ColaboradorService) {
+  constructor(private http: HttpClient,private vagaService: VagaService) {
   }
 
  ngOnInit(): void {
-       this.colaboradorService.getDados('1').subscribe(
+       this.vagaService.getDados('1').subscribe(
                       data => this.dados = data)
   		 /*this.http.get("http://localhost:8000/cliente/usuario/teste2@teste.com").subscribe(data => {
           console.log(data);
   	  		this.dados = data;
   	  })*/
   	}
+
 }

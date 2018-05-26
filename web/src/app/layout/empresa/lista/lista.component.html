@@ -8,8 +8,7 @@
 
 				<div class="card-body" id="corpo" *ngFor="let empresa of model | async">
 					<div>
-						<div align="right"><a [routerLink]="['/empresa/alterar/', 
-							empresa.id_empresa]">Editar</a></div>
+						<div align="right"><a [routerLink]="['/empresa/alterar/', empresa.id_empresa]">Editar</a></div>
 						<h4>Nome: {{ empresa.razao_social }}</h4>
   					</div>	
 				</div>

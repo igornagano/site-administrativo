@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { VagaComponent } from './vaga.component';
-//import { DadosEstabComponent } from './dados-estab/dados-estab.component';
+import { DadosVagaComponent } from './dados-vaga/dados-vaga.component';
 
 const routes: Routes = [
     {
@@ -9,9 +9,9 @@ const routes: Routes = [
         
         children: [
         	{ path: 'cadastro', loadChildren: './vaga-cadastro/vaga-cadastro.module#VagaCadastroModule' },
-            //{ path: 'dados', loadChildren: './dados-estab/dados-estab.module#DadosEstabModule' },
-            //{ path: 'alterar/:id', loadChildren: './estab-altera/estab-altera.module#EstabAlteraModule' },
-            //{ path: 'lista', loadChildren: './lista-estab/lista-estab.module#ListaEstabModule' },
+            { path: 'dados', loadChildren: './dados-vaga/dados-vaga.module#DadosVagaModule' },
+            { path: 'alterar/:id', loadChildren: './vaga-altera/vaga-altera.module#VagaAlteraModule' },
+            { path: 'lista', loadChildren: './lista-vaga/lista-vaga.module#ListaVagaModule' },
         ]
     }
 ];

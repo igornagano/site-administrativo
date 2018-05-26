@@ -7,6 +7,9 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { EmpresaService } from './layout/service/empresa.service';
+import { EstabelecimentoService } from './layout/service/estabelecimento.service';
+import { ColaboradorService } from './layout/service/colaborador.service';
+import { VagaService } from './layout/service/vaga.service';
 
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -38,7 +41,7 @@ export function createTranslateLoader(http: HttpClient) {
         AppRoutingModule
     ],
     declarations: [AppComponent, MenuComponent],
-    providers: [AuthGuard, EmpresaService],
+    providers: [AuthGuard, EmpresaService, EstabelecimentoService, ColaboradorService, VagaService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

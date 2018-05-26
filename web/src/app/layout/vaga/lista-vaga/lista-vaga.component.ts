@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Empresa } from '../../model/empresa';
-import { EmpresaService } from '../../service/empresa.service';
+import { Vaga } from '../../model/vaga';
+import { VagaService } from '../../service/vaga.service';
 import { routerTransition } from '../../../router.animations';
 import "rxjs/add/operator/map"; 
 
 @Component({
-  selector: 'app-lista',
-  templateUrl: './lista.component.html',
-  styleUrls: ['./lista.component.scss'],
+  selector: 'app-lista-vaga',
+  templateUrl: './lista-vaga.component.html',
+  styleUrls: ['./lista-vaga.component.scss'],
   animations: [routerTransition()]
 })
-export class ListaComponent implements OnInit {
+export class ListaVagaComponent implements OnInit {
+
   model
 
   submitted = false;
@@ -23,11 +24,11 @@ export class ListaComponent implements OnInit {
     return JSON.stringify(this.model);
   }
 
-  constructor(private empresaService: EmpresaService) {
+  constructor(private vagaService: VagaService) {
   }
 
   ngOnInit() {
-  		this.model = this.empresaService.getAll().map(res => res);
+  		this.model = this.vagaService.getAll().map(res => res);
   }
 
   print(){

@@ -12,7 +12,7 @@ import { routerTransition } from '../../../router.animations';
 })
 export class VagaCadastroComponent implements OnInit {
 
-  model = new Vaga('','','','','');
+  model = new Vaga('3','','','','');
 
   submitted = false;
 

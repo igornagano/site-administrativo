@@ -6,7 +6,6 @@ import { ColaboradorComponent } from './colaborador.component';
 import { PageHeaderModule } from './../../shared';
 import { FormsModule } from '@angular/forms';
 
-
 @NgModule({
     imports: [CommonModule, ColaboradorRoutingModule, PageHeaderModule, FormsModule],
     declarations: [ColaboradorComponent]

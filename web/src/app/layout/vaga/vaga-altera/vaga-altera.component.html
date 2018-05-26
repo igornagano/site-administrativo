@@ -7,10 +7,10 @@
 
         		<div class="col-sm-8 col-sm-offset-2">
             
-		            <form (ngSubmit)='onSubmit()' #formulario> 
+		        	<form (ngSubmit)='onSubmit()' #formulario> 
 
 		            	<div>
-		            		<h1>Cadastro das Vagas</h1>
+		            		<h1>Alteração de Vaga</h1>
 		            	</div>
 		               
 		                <div class="form-group" >
@@ -37,9 +37,10 @@
 		                    <input type="text" class="form-control" required [(ngModel)]="model.tipo" name="tipo" 
 		                    #tipo="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
 		                </div>
-
+		               
 		                <button type="submit" class="btn btn-primary">Enviar</button>
-
+		                <a [routerLink]="['/vaga/lista']"><button type="button" class="btn btn-primary">Voltar
+		                </button></a>
 		            </form>	  
 		         </div>  
         	</section>      

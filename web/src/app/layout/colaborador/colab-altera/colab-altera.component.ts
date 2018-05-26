@@ -1,30 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { Estabelecimento } from '../../model/estabelecimento';
-import { EstabelecimentoService } from '../../service/estabelecimento.service';
+import { Colaborador } from '../../model/colaborador';
+import { ColaboradorService } from '../../service/colaborador.service';
 import { routerTransition } from '../../../router.animations';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
-  selector: 'app-estab-altera',
-  templateUrl: './estab-altera.component.html',
-  styleUrls: ['./estab-altera.component.scss'],
+  selector: 'app-colab-altera',
+  templateUrl: './colab-altera.component.html',
+  styleUrls: ['./colab-altera.component.scss'],
   animations: [routerTransition()]
 })
-export class EstabAlteraComponent implements OnInit {
+export class ColabAlteraComponent implements OnInit {
 
   model = {}
   
-  constructor(private estabelecimentoService: EstabelecimentoService,
+  constructor(private colaboradorService: ColaboradorService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
-  	this.estabelecimentoService.getDados(id).subscribe(
+  	this.colaboradorService.getDados(id).subscribe(
                       data => this.model = data);
   }
 
   onSubmit(){
-    this.estabelecimentoService.putDados(this.model).subscribe(
+    this.colaboradorService.putDados(this.model).subscribe(
                     function(data){
                     	if(data == this.model){
                     		alert("Dados alterados com sucesso");

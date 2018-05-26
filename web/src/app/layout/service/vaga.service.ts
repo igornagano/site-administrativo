@@ -25,11 +25,21 @@ export class VagaService {
   }
 
  getDados(id) {
-    return this.http.get("ec2-18-231-173-45.sa-east-1.compute.amazonaws.com:8000/vaga/"+id)
+    //return this.http.get("ec2-18-231-173-45.sa-east-1.compute.amazonaws.com:8000/vaga/"+id)
+    return this.http.get("http://localhost:8000/vaga/"+id)
     	.pipe(
             map(res=>res)
         )
  } 
+
+ getAll() {
+    console.log("aqui")
+    return this.http.get("http://localhost:8000/vaga")
+    	.pipe(
+            map(res=>res) 
+        )
+ } 
+
  putDados(vaga){
  	this.vaga = vaga;
  	return this.http.put("http://localhost:8000/vaga/"+this.vaga['id_vaga'], this.vaga,httpOptions).pipe(
@@ -38,8 +48,8 @@ export class VagaService {
  }    
  setDados(vaga){
  	this.vaga = vaga
- 	return this.http.post("http://localhost:8000/vaga",  this.vaga).pipe(
-            map(res=>res)
-        )
+        console.log('erro service')
+     	return this.http.post("http://localhost:8000/vaga",  this.vaga).subscribe(data => {
+        });
 	}
 }

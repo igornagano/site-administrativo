@@ -1,9 +1,10 @@
 <div [@routerTransition]>
 
 	<script type="text/javascript" 
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js">
+	src="jquery.js" type="text/javascript"
+	src="jquery.maskedinput.js" type="text/javascript">
 	</script>
-   
+
 	<div ng-app="validationApp" ng-controller="mainController">
     
     	<div class="container">  	
@@ -11,16 +12,12 @@
 
         		<div class="col-sm-8 col-sm-offset-2">
             
-		            <!-- PAGE HEADER -->		                 
-		            <!-- FORM -->
 		            <!-- passa a variável se nosso formulário é válida ou inválida -->
 		            <!-- novalidate isso vai evitar a validação padrão do HTML5, já que vamos fazer isso usando o Angular -->
-
 		            <script>
-					    $(document).ready(function () { 
-					        var $cpf = $("#CPF");
-					        $cpf.mask('000.000.000-00', {reverse: true});
-					    });
+		            jQuery(function($){
+					   $("#cpf").mask("999.999.999-99");
+					});
 					</script>
 
 		            <form (ngSubmit)='onSubmit()' #formulario> 
@@ -29,7 +26,7 @@
 		            		<h1>Cadastro de Empresas</h1>
 		            	</div>
 		               
-		                <div class="form-group" >
+		                <div class="form-group" novalidate>
 		                    <label>Nome</label>
 		                    <span>
 		                    <input type="text" class="form-control" id="nome" required [(ngModel)]="model.nome" name="nome" #nome="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
@@ -39,7 +36,6 @@
 		                    <label>Nome Fantasia</label>
 		                    <input type="text" name="nameFant" class="form-control" required [(ngModel)]="model.nomeFantasia" #nomeFantasia="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
-
 		               
 		                <div class="form-group">
 		                    <label>Email</label>
@@ -51,7 +47,6 @@
 		                    <input type="text" name="cnpj" class="form-control" ng-maxlength="14" placeholder="##.###.### / ####-##" required [(ngModel)]="model.cnpj" #cnpj="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
 
-		               
 		                <div class="form-group">
 		                    <label>Telefone</label>
 		                    <input type="text" name="telefone" class="form-control" ng-minlength="13" ng-maxlength="13" required [(ngModel)]="model.telefone" #telefone="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
@@ -61,7 +56,6 @@
 		                    <label>Nome Proprietário</label>
 		                    <input type="text" name="nameProprietario" class="form-control" required  [(ngModel)]="model.nomeProprietario" #nomeProprietario="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
-
 
 		                <div class="form-group">
 		                    <label>CPF</label>

@@ -7,6 +7,7 @@ import { PageHeaderModule } from './../../shared';
 import { FormsModule } from '@angular/forms';
 
 
+
 @NgModule({
     imports: [CommonModule, VagaRoutingModule, PageHeaderModule, FormsModule],
     declarations: [VagaComponent]
