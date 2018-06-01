@@ -19,8 +19,9 @@ const routes: Routes = [
             { path: 'empresa', loadChildren: './empresa/empresa.module#EmpresaModule' },
             { path: 'estabelecimento', loadChildren: './estabelecimento/estabelecimento.module#EstabelecimentoModule' },
             { path: 'colaborador', loadChildren: './colaborador/colaborador.module#ColaboradorModule' },
-            { path: 'vaga', loadChildren: './vaga/vaga.module#VagaModule' }
-        ]
+            { path: 'vaga', loadChildren: './vaga/vaga.module#VagaModule' },
+            { path: 'reserva', loadChildren: './reserva/reserva.module#ReservaModule' },
+       ]
     }
 ];
 

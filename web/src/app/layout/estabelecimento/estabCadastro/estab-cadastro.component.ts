@@ -10,7 +10,7 @@ import { routerTransition } from '../../../router.animations';
   animations: [routerTransition()]
 })
 export class EstabCadastroComponent implements OnInit {
-  model = new Estabelecimento('','','2');
+  model = new Estabelecimento('','','','','2');
 
   submitted = false;
 

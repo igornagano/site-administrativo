@@ -65,6 +65,19 @@
         </div>
 
         <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('reserva')">
+                <span><i class="fa fa-plus"></i>&nbsp; {{ 'Reserva' | translate }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'reserva'">
+                <ul class="submenu">
+                    <li>
+                    <a [routerLink]="['/reserva/lista']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span>{{ 'Lista' | translate }}</span></a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+
+        <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('vaga')">
                 <span><i class="fa fa-plus"></i>&nbsp; {{ 'Vaga' | translate }}</span>
             </a>

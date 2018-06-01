@@ -1,0 +1,21 @@
+<div [@routerTransition]>
+	<div class="container-fluid">
+		<div>
+			<div class="card">
+				<div class="card-header">
+					<h3>Dados da Reserva</h3>
+				</div>
+
+				<div class="card-body" id="corpo" *ngFor="let reserva of model | async">
+					<div>
+						<div align="right"><a [routerLink]="['/reserva/alterar/', reserva.id_usuario ]">Editar</a></div>
+						<h4>Cliente: {{ reserva.id_cliente }}</h4><br>
+						Id do veiculo: {{ reserva.id_veiculo}}<br>
+						Id da Vaga: {{ reserva.id_vaga}}<br>
+						Data da Reserva: {{ reserva.data_efetuada}}<br>
+						Hora Reservada: {{ reserva.hora_marcada}}
+  					</div>				
+				</div>
+			</div>
+
+			
