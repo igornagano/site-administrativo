@@ -4,13 +4,13 @@ export class Reserva {
 	public id_veiculo;
 	public id_vaga;
 	public situacao;
-	public hora_entrada; //time
-	public hora_saida; //time
+	public hora_entrada = ""; //time
+	public hora_saida = ""; //time
 	public data_efetuada; //date
-	public hora_marcada; //time
-	public tempo_atraso; //time
-	public preco;
-	public pago;
+	public hora_marcada = ""; //time
+	public tempo_atraso = ""; //time
+	public preco = "";
+	public pago = "";
 
 	constructor( 
 		id_cliente,

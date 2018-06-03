@@ -1,0 +1,37 @@
+<div [@routerTransition]>
+      
+    	<div class="container">  	
+    		<h1>Reserva {{ id }}</h1>
+            <br>
+            <div class="row">
+                <div class="col-xl-6">
+                    <label><strong>Data: </strong>{{ reserva.data_efetuada | date:'dd/MM/yyyy'}}</label><br>
+                    <label><strong>Hora Marcada: </strong>{{ reserva.hora_marcada }}</label><br>
+                    <label><strong>Hora Entrada: </strong>{{ reserva.hora_entrada | date:'HH:mm'}}</label><br>
+                    <label><strong>Hora Saída: </strong>{{ reserva.hora_saida | date:'HH:mm'}}</label><br>
+                    <label><strong>Situação: </strong>{{ situacao[reserva.situacao]}}</label><br>
+                </div>
+                <div class="col-xl-6">
+                    <label><strong>Carro: </strong>{{ reserva.Veiculo.marca }} - {{ reserva.Veiculo.modelo }}</label><br>
+                    <label><strong>Cor: </strong>{{ reserva.Veiculo.cor }}</label><br>
+                    <label><strong>Placa: </strong>{{ reserva.Veiculo.placa }}</label><br>
+                </div>
+            </div>
+            <div class="row" *ngIf="valor > 0" style="width: 100%, text-align: center;">
+                <h2><strong>Preço: {{ numberToReal(valor) }}</strong></h2>   
+            </div>
+            <div style="width: 100%" >
+                <div style="float: left;"   *ngIf="reserva.situacao == 'A'">
+                    <button class=" btn btn-lg btn-success" (click)=" efetuarEntrada()" >Efetuar Entrada</button>
+                </div>
+                <div style="float: left;"   *ngIf="reserva.situacao == 'E'">
+                    <button class=" btn btn-lg btn-success" (click)=" efetuarSaida()" >Efetuar Saída</button>
+                </div>
+                <div style="float: right;">
+                    <a  [routerLink]="['/reservas/lista']"><button class="btn btn-lg btn-danger">Voltar</button></a>
+                </div>
+            </div>
+        
+    	</div>
+ 
+</div>

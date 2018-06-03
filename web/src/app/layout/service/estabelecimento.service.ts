@@ -3,6 +3,7 @@ import {HttpClient,HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { Estabelecimento } from '../model/estabelecimento';
+import { Conf } from "./conf";
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
@@ -19,19 +20,19 @@ export class EstabelecimentoService {
 		return Observable.throw(error || 'backend server error');
 	}
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private conf: Conf) { 
 
   }
 
  getDados(id) {
-    return this.http.get("http://localhost:8000/estabelecimento/"+id)
+    return this.http.get(this.conf.url + "/estabelecimento/"+id)
     	.pipe(
             map(res=>res)
         )
  } 
 
  getAll() {
-    return this.http.get("http://localhost:8000/estabelecimento")
+    return this.http.get(this.conf.url + "/estabelecimento")
     	.pipe(
             map(res=>res)
         )
@@ -39,16 +40,23 @@ export class EstabelecimentoService {
 
  putDados(estabelecimento){
  	this.estabelecimento = estabelecimento;
- 	return this.http.put("http://localhost:8000/estabelecimento/"+this.estabelecimento['id_estabelecimento'], 
+ 	return this.http.put(this.conf.url + "/estabelecimento/"+this.estabelecimento['id_estabelecimento'], 
         this.estabelecimento,httpOptions)
         .pipe(
             map(res=>res)
         )
  }    
  setDados(estabelecimento){
- 	this.estabelecimento = estabelecimento
-        console.log('erro service')
-    	return this.http.post("http://localhost:8000/estabelecimento",this.estabelecimento).subscribe(data => {
+ 	this.estabelecimento = estabelecimento;
+    	return this.http.post(this.conf.url + "/estabelecimento",this.estabelecimento).subscribe(data => {
+
         });
 	}
+getPreco(estabelecimento){
+        return this.http.get(this.conf.url + "/valores/estabelecimento/"+
+            estabelecimento,this.estabelecimento)
+        .pipe(
+            map(res=>res)
+        )
+    }
 }

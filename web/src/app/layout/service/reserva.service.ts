@@ -3,6 +3,7 @@ import {HttpClient,HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { Reserva } from '../model/reserva';
+import { Conf } from "./conf";
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -20,35 +21,44 @@ export class ReservaService {
 		return Observable.throw(error || 'backend server error');
 	}
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private conf: Conf) { 
 
   }
-
- getDados(id) {
-    //return this.http.get("ec2-18-231-173-45.sa-east-1.compute.amazonaws.com:8000/reserva/"+id)
-    	return this.http.get("http://localhost:8000/reserva"+id)
+ getReservas(id_estabelecimento){
+ 	  return this.http.get(this.conf.url + "/reserva/estabelecimento/"+id_estabelecimento+"/reservados")
     	.pipe(
             map(res=>res)
         )
  }
- getAll() {
-    console.log("aqui")
-    return this.http.get("http://localhost:8000/reserva")
+ getReservasHoje(id_estabelecimento){
+    var hoje = new Date();
+    var dia = hoje.getDate();
+    var mes = hoje.getMonth();
+    var ano = hoje.getYear() + 1900;
+  
+    return this.http.get(this.conf.url + "/reserva/estabelecimento/"+id_estabelecimento+"/"+dia+"/"+mes+"/"+ano)
+        .pipe(
+            map(res=>res)
+        )
+ }
+
+ getDados(id) {
+    return this.http.get(this.conf.url + "/reserva/"+id)
     	.pipe(
-            map(res=>res) 
+            map(res=>res)
         )
  } 
-
  putDados(reserva){
  	this.reserva = reserva;
- 	return this.http.put("http://localhost:8000/reserva/"+this.reserva['id_reserva'], this.reserva,httpOptions).pipe(
+ 	return this.http.put(this.conf.url + "/reserva/"+this.reserva['id_reserva'], this.reserva,httpOptions).pipe(
             map(res=>res)
         )
  }    
  setDados(reserva){
  	this.reserva = reserva
- 	return this.http.post("http://localhost:8000/reserva",  this.reserva).pipe(
+ 	return this.http.post(this.conf.url + "/reserva",  this.reserva).pipe(
             map(res=>res)
         )
 	}
+
 }

@@ -3,6 +3,7 @@ import {HttpClient,HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { Empresa } from '../model/empresa';
+import { Conf } from "./conf";
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -23,18 +24,18 @@ export class EmpresaService {
 		return Observable.throw(error || 'backend server error');
 	}
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private conf: Conf) { 
 
   }
 
  getDados(id) {
-    return this.http.get("http://localhost:8000/empresa/"+id)
+    return this.http.get(this.conf.url + "/empresa/"+id)
     	.pipe(
             map(res=>res)
         )
  } 
  getAll() {
-    return this.http.get("http://localhost:8000/empresa")
+    return this.http.get(this.conf.url + "/empresa")
     	.pipe(
             map(res=>res)
         )
@@ -42,7 +43,7 @@ export class EmpresaService {
 
  putDados(empresa){
  	this.empresa = empresa;
- 	return this.http.put("http://localhost:8000/empresa/"+this.empresa['id_empresa'], this.empresa,httpOptions)
+ 	return this.http.put(this.conf.url + "/empresa/"+this.empresa['id_empresa'], this.empresa,httpOptions)
       .pipe(
             map(res=>res)
         )
@@ -58,11 +59,11 @@ export class EmpresaService {
   	this.usuario['telefone'] = empresa.telefone;
   	this.usuario['senha'] = "teste123456";
 
- 	    this.http.post("http://localhost:8000/empresa",  this.empresa).subscribe(data => {    
+ 	    this.http.post(this.conf.url + "/empresa",  this.empresa).subscribe(data => {    
 	    this.usuario['id_empresa'] = data['id_empresa'];
-	    this.http.post("http://localhost:8000/colaborador", this.usuario,httpOptions).subscribe(data => {
+	    this.http.post(this.conf.url + "/colaborador", this.usuario,httpOptions).subscribe(data => {
 	    this.gestor['id_colaborador'] = data['id_colaborador'];
-	    this.http.post("http://localhost:8000/gestor", this.gestor,httpOptions).subscribe(data => {
+	    this.http.post(this.conf.url + "gestor", this.gestor,httpOptions).subscribe(data => {
 	    		
 			});
 		});

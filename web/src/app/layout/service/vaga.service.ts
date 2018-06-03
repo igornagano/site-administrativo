@@ -3,6 +3,7 @@ import {HttpClient,HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { Vaga } from '../model/vaga';
+import { Conf } from "./conf";
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -20,36 +21,26 @@ export class VagaService {
 		return Observable.throw(error || 'backend server error');
 	}
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private conf: Conf) { 
 
   }
 
  getDados(id) {
-    //return this.http.get("ec2-18-231-173-45.sa-east-1.compute.amazonaws.com:8000/vaga/"+id)
-    return this.http.get("http://localhost:8000/vaga/"+id)
+    return this.http.get(this.conf.url + "/vaga/"+id)
     	.pipe(
             map(res=>res)
         )
  } 
-
- getAll() {
-    console.log("aqui")
-    return this.http.get("http://localhost:8000/vaga")
-    	.pipe(
-            map(res=>res) 
-        )
- } 
-
  putDados(vaga){
  	this.vaga = vaga;
- 	return this.http.put("http://localhost:8000/vaga/"+this.vaga['id_vaga'], this.vaga,httpOptions).pipe(
+ 	return this.http.put(this.conf.url + "/vaga/"+this.vaga['id_vaga'], this.vaga,httpOptions).pipe(
             map(res=>res)
         )
  }    
  setDados(vaga){
  	this.vaga = vaga
-        console.log('erro service')
-     	return this.http.post("http://localhost:8000/vaga",  this.vaga).subscribe(data => {
-        });
+ 	return this.http.post(this.conf.url + "/vaga",  this.vaga).pipe(
+            map(res=>res)
+        )
 	}
 }

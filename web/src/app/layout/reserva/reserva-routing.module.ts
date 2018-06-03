@@ -13,6 +13,7 @@ const routes: Routes = [
             //{ path: 'dados', loadChildren: './dados-colab/dados-colab.module#DadosColabModule' },
             //{ path: 'alterar/:id', loadChildren: './colab-altera/colab-altera.module#ColabAlteraModule' },
             { path: 'lista', loadChildren: './lista-reserva/lista-reserva.module#ListaReservaModule' },
+            { path: ':id', loadChildren: './detalhes-reserva/detalhes-reserva.module#DetalhesReservaModule' },
         ]
     }
 ];

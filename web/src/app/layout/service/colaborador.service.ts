@@ -3,8 +3,7 @@ import {HttpClient,HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { Colaborador } from '../model/colaborador';
-const httpOptions = { 
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 @Injectable()
@@ -12,7 +11,6 @@ export class ColaboradorService {
 	
 	colaborador = {};
 	gestor = {};
-    usuario = {};
 
 	resultado = '';
 	private handleError(error: any){
@@ -58,12 +56,6 @@ export class ColaboradorService {
     
    return this.http.post("http://localhost:8000/colaborador",  this.colaborador).subscribe(data => {
         this.colaborador['id_colaborador'] = data['id_colaborador'];
-        this.http.post("http://localhost:8000/colaborador", this.usuario,httpOptions).subscribe(data => {
-        this.gestor['id_colaborador'] = data['id_colaborador'];
-        this.http.post("http://localhost:8000/gestor", this.gestor,httpOptions).subscribe(data => {
-
-            });
         });
-    });
-    }
+	}
 }
