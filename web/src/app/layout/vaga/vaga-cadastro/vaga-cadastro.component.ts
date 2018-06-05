@@ -21,14 +21,11 @@ export class VagaCadastroComponent implements OnInit {
   onSubmit(){
     this.vagaService.setDados(this.model).subscribe((res)=>
     {
-      var id = res.id_vaga;
+      var id = res['id_vaga'];
       var dados = {
         id_vaga: id
       }
-      this.sensorService.setDados(dados).subscribe((res1)=>
-      {
-        alert("Cadastrado com Sucesso")
-      });
+        alert("Cadastrado com Sucesso");
     });
   }
 

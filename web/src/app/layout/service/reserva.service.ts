@@ -33,7 +33,7 @@ export class ReservaService {
  getReservasHoje(id_estabelecimento){
     var hoje = new Date();
     var dia = hoje.getDate();
-    var mes = hoje.getMonth()+1;
+    var mes = hoje.getMonth();
    var ano = hoje.getFullYear();
   
     return this.http.get(this.conf.url + "/reserva/estabelecimento/"+id_estabelecimento+"/"+dia+"/"+mes+"/"+ano)
