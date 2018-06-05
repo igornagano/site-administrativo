@@ -13,7 +13,7 @@ import { routerTransition } from '../../../router.animations';
 export class DadosEstabComponent implements OnInit {
 
 	dados={};
-  model = new Estabelecimento('','','');
+  model = new Estabelecimento('','','','','');
 
   submitted = false;
 

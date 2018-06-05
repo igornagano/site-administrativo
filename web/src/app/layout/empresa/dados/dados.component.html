@@ -7,7 +7,7 @@
 				</div>
 				<div class="card-body">
 					<div align="right">
-						<a href="#">Editar</a>
+						<a [routerLink]="['/empresa/alterar/', dados.id_empresa]">Editar</a>
 					</div>
 					<div ng-controller="dados">
 						<label><strong>Nome:</strong></label>

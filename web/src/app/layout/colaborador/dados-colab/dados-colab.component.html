@@ -7,7 +7,7 @@
 				</div>
 				<div class="card-body">
 					<div align="right">
-						<a href="#">Editar</a>
+						<a [routerLink]="['/colaborador/alterar/', dados.id_colaborador]">Editar</a>
 					</div>
 					<div ng-controller="dados">
 						<label><strong>Nome:</strong></label>
@@ -18,8 +18,8 @@
 							<span>{{ dados.Usuarios.cpf }}</span><br />
 						<label><strong>Telefone:</strong></label>
 							<span>{{ dados.Usuarios.telefone }}</span><br/>
-						<label><strong>Id:</strong></label>
-							<span>{{ dados.Usuarios.id_usuario }}</span><br/>
+						<label><strong>Id Colaborador:</strong></label>
+							<span>{{ dados.id_colaborador}}</span><br/>
 					</div>
 				</div>
 			</div>		

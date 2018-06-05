@@ -11,6 +11,8 @@ import { EstabelecimentoService } from './layout/service/estabelecimento.service
 import { ColaboradorService } from './layout/service/colaborador.service';
 import { VagaService } from './layout/service/vaga.service';
 import { ReservaService } from './layout/service/reserva.service';
+import { SensorService } from './layout/service/sensor.service';
+import {Conf} from './layout/service/conf';
 
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -42,7 +44,7 @@ export function createTranslateLoader(http: HttpClient) {
         AppRoutingModule
     ],
     declarations: [AppComponent, MenuComponent],
-    providers: [AuthGuard, EmpresaService, EstabelecimentoService, ColaboradorService, VagaService, ReservaService],
+    providers: [AuthGuard, EmpresaService, EstabelecimentoService, ColaboradorService, VagaService, ReservaService, SensorService, Conf],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -31,12 +31,27 @@ export class VagaService {
             map(res=>res)
         )
  } 
+
+  getAll() {
+    return this.http.get(this.conf.url + "/Vaga")
+        .pipe(
+            map(res=>res)
+        )
+ }
+
  putDados(vaga){
  	this.vaga = vaga;
  	return this.http.put(this.conf.url + "/vaga/"+this.vaga['id_vaga'], this.vaga,httpOptions).pipe(
             map(res=>res)
         )
- }    
+ }
+
+ delet(id){
+    return this.http.get(this.conf.url + "/vaga/"+id).pipe(
+            map(res=>res)
+        )
+ }
+
  setDados(vaga){
  	this.vaga = vaga
  	return this.http.post(this.conf.url + "/vaga",  this.vaga).pipe(

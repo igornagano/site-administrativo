@@ -33,8 +33,8 @@ export class ReservaService {
  getReservasHoje(id_estabelecimento){
     var hoje = new Date();
     var dia = hoje.getDate();
-    var mes = hoje.getMonth();
-    var ano = hoje.getYear() + 1900;
+    var mes = hoje.getMonth()+1;
+   var ano = hoje.getFullYear();
   
     return this.http.get(this.conf.url + "/reserva/estabelecimento/"+id_estabelecimento+"/"+dia+"/"+mes+"/"+ano)
         .pipe(
@@ -48,6 +48,7 @@ export class ReservaService {
             map(res=>res)
         )
  } 
+
  putDados(reserva){
  	this.reserva = reserva;
  	return this.http.put(this.conf.url + "/reserva/"+this.reserva['id_reserva'], this.reserva,httpOptions).pipe(

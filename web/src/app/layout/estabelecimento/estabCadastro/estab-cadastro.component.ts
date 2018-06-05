@@ -10,14 +10,15 @@ import { routerTransition } from '../../../router.animations';
   animations: [routerTransition()]
 })
 export class EstabCadastroComponent implements OnInit {
-  model = new Estabelecimento('','','','','2');
+  model = new Estabelecimento('','','','','');
 
   submitted = false;
 
 
   onSubmit(){
+    console.log(this.model);
     this.estabelecimentoService.setDados(this.model);
-    console.log('erro component')
+      
    
   }
 

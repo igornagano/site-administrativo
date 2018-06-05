@@ -26,12 +26,12 @@
 
 		                <div class="form-group">
 		                    <label>Inicio do funcionamento</label>
-		                    <input type="text" name="horario_inicio" class="form-control" required [(ngModel)]="model.horario_inicio" #horario_inicio="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                    <input type="time" name="horario_inicio" class="form-control" required [(ngModel)]="model.horario_inicio" #horario_inicio="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
 
 		                <div class="form-group">
 		                    <label>Fim do funcionamento</label>
-		                    <input type="text" name="horario_fim" class="form-control" required [(ngModel)]="model.horario_fim" #horario_fim="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                    <input type="time" name="horario_fim" class="form-control" required [(ngModel)]="model.horario_fim" #horario_fim="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
 		               
 		                <button type="submit" class="btn btn-primary">Enviar</button>

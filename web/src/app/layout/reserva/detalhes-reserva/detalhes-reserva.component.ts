@@ -56,10 +56,12 @@ export class DetalhesReservaComponent implements OnInit {
     
     this.estabelecimentoService.getPreco("1").subscribe((res) =>
     {
+      console.log(res);
       this.preco = res[0].valor;
       this.hora = res[0].hora;
 
-      var quantidade =  Math.ceil((diferenca/parseFloat(this.hora));
+      console.log(this.hora);
+      var quantidade =  Math.ceil((diferenca/(this.hora)));
       
       this.valor = (quantidade * this.preco);
       
