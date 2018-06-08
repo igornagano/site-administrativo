@@ -16,6 +16,11 @@ export class EmpresaCadastroComponent implements OnInit {
 
   onSubmit(){
     this.empresaService.setDados(this.model);
+
+    /*this.empresaService.setDados(this.model).subscribe((res)=>
+    {
+          alert("Cadastrado com Sucesso");
+    });*/
   }
 
   pegardados(){

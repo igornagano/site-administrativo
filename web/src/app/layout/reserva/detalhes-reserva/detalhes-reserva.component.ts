@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   selector: 'app-detalhes-reserva',
   templateUrl: './detalhes-reserva.component.html',
   styleUrls: ['./detalhes-reserva.component.scss'],
-   animations: [routerTransition()]
+  animations: [routerTransition()]
 })
 export class DetalhesReservaComponent implements OnInit {
   id = null

@@ -59,7 +59,7 @@
 
 		                <div class="form-group">
 		                    <label>CPF</label>
-		                    <input type="text" name="CPF" id="cpf" class="form-control" ng-model="cpf" required [(ngModel)]="model.cpf" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                    <input type="text" name="CPF" id="cpf" class="form-control" ng-model="cpf" ng-maxlength="11" required [(ngModel)]="model.cpf" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
 
 		                <!-- SUBMIT BUTTON -->
