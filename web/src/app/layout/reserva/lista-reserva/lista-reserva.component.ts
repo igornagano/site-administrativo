@@ -5,7 +5,11 @@ import { ClienteService } from '../../service/cliente.service';
 import { routerTransition } from '../../../router.animations';
 import "rxjs/add/operator/map"; 
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Pipe } from '@angular/core';
 
+@Pipe({
+  name: 'orderBy'
+})
 @Component({
   selector: 'app-lista-reserva',
   templateUrl: './lista-reserva.component.html',
@@ -15,6 +19,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class ListaReservaComponent implements OnInit {
   usuario = null;
   reservas = null;
+  estabelecimento = localStorage.getItem("estabelecimento");
   dados = {
     numero: ""
     }
@@ -24,11 +29,13 @@ export class ListaReservaComponent implements OnInit {
     'C': "Cancelado",
     'F': "Finalizado"
   }
-  constructor(private reservaService: ReservaService,  private router: Router) { }
+  constructor(private reservaService: ReservaService,  private router: Router) {
+
+  }
 
   ngOnInit() {
     
-    this.reservas = this.reservaService.getReservasHoje("2").map((res) =>{
+    this.reservas = this.reservaService.getReservasHoje(this.estabelecimento).map((res) =>{
           
         return res;
     });
@@ -54,5 +61,30 @@ export class ListaReservaComponent implements OnInit {
 
     return false
   }
+
+
+  intervalFunc() {
+    var agora = new Date();
+      this.reservas = this.reservaService.getReservasHoje(this.estabelecimento).map((res) =>{
+        for(var i in res){
+          if(res[i]['situacao'] == "A"){
+            var hora_marcada = res[i]['hora_marcada'].split(":");
+            var hora = hora_marcada[0];
+            var minuto = hora_marcada[1];
+
+
+            var hora = new Date();
+            hora.setHours(hora,minuto,0 ,0);
+
+            if(agora.getTime() > hora.getTime()){
+              console.log(res[i]);
+            }
+          }
+        }  
+        return res;
+    });
+      //Reserva.findAll({where: })
+  }
+  setInterval(intervalFunc,60000);
 
 }

@@ -3,7 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { EstabelecimentoService } from '../../service/estabelecimento.service';
 import { Estabelecimento } from '../../model/estabelecimento';
 import { routerTransition } from '../../../router.animations';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-dados-estab',
   templateUrl: './dados-estab.component.html',
@@ -11,10 +11,11 @@ import { routerTransition } from '../../../router.animations';
   animations: [routerTransition()]
 })
 export class DadosEstabComponent implements OnInit {
+  gestor = localStorage.getItem("gestor");
 
 	dados={};
   model = new Estabelecimento('','','','','');
-
+  estabelecimento = localStorage.getItem("estabelecimento");
   submitted = false;
 
   onSubmit(){
@@ -25,11 +26,14 @@ export class DadosEstabComponent implements OnInit {
     console.log(this.dados);
   }
 
-  constructor(private http: HttpClient,private estabelecimentoService: EstabelecimentoService) {
+  constructor(private http: HttpClient,private estabelecimentoService: EstabelecimentoService,public router: Router) {
+    if(this.gestor == undefined){
+        router.navigate(["/not-found"]);
+    }
   }
 
  ngOnInit(): void {
-       this.estabelecimentoService.getDados('1').subscribe(
+       this.estabelecimentoService.getDados(this.estabelecimento).subscribe(
                       data => this.dados = data)
   		 /*this.http.get("http://localhost:8000/cliente/usuario/teste2@teste.com").subscribe(data => {
           console.log(data);

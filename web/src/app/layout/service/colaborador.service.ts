@@ -3,6 +3,7 @@ import {HttpClient,HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { Colaborador } from '../model/colaborador';
+import { Conf } from "./conf";
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
@@ -20,21 +21,33 @@ export class ColaboradorService {
 		return Observable.throw(error || 'backend server error');
 	}
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private conf: Conf) { 
 
   }
 
  getDados(id) {
     //return this.http.get("ec2-18-231-173-45.sa-east-1.compute.amazonaws.com:8000/colaborador/"+id)
-    return this.http.get("http://localhost:8000/colaborador/"+id)
+    return this.http.get(this.conf.url + "/colaborador/"+id)
     	.pipe(
             map(res=>res) 
         )
  } 
 
+
+ login(email, senha) {
+    //return this.http.get("ec2-18-231-173-45.sa-east-1.compute.amazonaws.com:8000/colaborador/"+id)
+    var dados = {
+        'email': email,
+        'senha': senha
+    }
+    return this.http.post(this.conf.url + "/colaborador/usuario/login", dados)
+        .pipe(
+            map(res=>res)
+        )
+ } 
  getAll() {
     console.log("aqui")
-    return this.http.get("http://localhost:8000/colaborador")
+    return this.http.get(this.conf.url + "/colaborador")
     	.pipe(
             map(res=>res) 
         )
@@ -42,7 +55,7 @@ export class ColaboradorService {
 
  putDados(colaborador){
  	this.colaborador = colaborador;
- 	return this.http.put("http://localhost:8000/colaborador/"+this.colaborador['id_colaborador'],this.colaborador,httpOptions)
+ 	return this.http.put(this.conf.url + "/colaborador/"+this.colaborador['id_colaborador'],this.colaborador,httpOptions)
         .pipe(
             map(res=>res)
         )
@@ -54,7 +67,7 @@ export class ColaboradorService {
     this.colaborador['cpf'] = colaborador.cpf;
     this.colaborador['telefone'] = colaborador.telefone;
     
-   return this.http.post("http://localhost:8000/colaborador",  this.colaborador).subscribe(data => {
+   return this.http.post(this.conf.url + "/colaborador",  this.colaborador).subscribe(data => {
         this.colaborador['id_colaborador'] = data['id_colaborador'];
         });
 	}

@@ -10,6 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class HeaderComponent implements OnInit {
     pushRightClass: string = 'push-right';
 
+    nome = localStorage.getItem("nome");
     constructor(private translate: TranslateService, public router: Router) {
 
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
@@ -47,6 +48,12 @@ export class HeaderComponent implements OnInit {
 
     onLoggedout() {
         localStorage.removeItem('isLoggedin');
+        localStorage.removeItem('colaborador');
+        localStorage.removeItem('nome');
+        localStorage.removeItem('empresa');
+        localStorage.removeItem('gestor');
+        localStorage.removeItem('proprietario');
+        localStorage.removeItem('estabelecimento');
     }
 
     changeLang(language: string) {

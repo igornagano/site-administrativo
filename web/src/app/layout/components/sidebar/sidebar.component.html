@@ -6,7 +6,7 @@
     
         <a [routerLink]="['/reservas/lista']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span><i class="fa fa-plus"></i>&nbsp; {{ 'Reservas' | translate }}</span></a>
         
-        <div class="nested-menu">
+        <div class="nested-menu" *ngIf="gestor!=undefined">
             <a class="list-group-item" (click)="addExpandClass('colaborador')">
                 <span><i class="fa fa-plus"></i>&nbsp; {{ 'Colaborador' | translate }}</span>
             </a>
@@ -26,8 +26,8 @@
             </li>
         </div>
 
-         <div class="nested-menu">
-            <a class="list-group-item" (click)="addExpandClass('empresa')">
+         <div class="nested-menu" *ngIf="gestor!=undefined">
+            <a class="list-group-item" (click)="addExpandClass('empresa')" >
                 <span><i class="fa fa-plus"></i>&nbsp; {{ 'Empresa' | translate }}</span>
             </a>
             <li class="nested" [class.expand]="showMenu === 'empresa'">
@@ -45,7 +45,7 @@
             </li>
         </div>
 
-        <div class="nested-menu">
+        <div class="nested-menu" *ngIf="proprietario=='S'">
             <a class="list-group-item" (click)="addExpandClass('estabelecimento')">
                 <span><i class="fa fa-plus"></i>&nbsp; {{ 'Estabelecimento' | translate }}</span>
             </a>
@@ -88,7 +88,7 @@
         <div class="header-fields">
             <div class="nested-menu">
                 <a class="list-group-item" (click)="addExpandClass('profile')">
-                    <span><i class="fa fa-user"></i>&nbsp; John Smith</span>
+                    <span><i class="fa fa-user"></i>&nbsp; {{ nome }}</span>
                 </a>
                 <li class="nested" [class.expand]="showMenu === 'profile'">
                     <ul class="submenu">

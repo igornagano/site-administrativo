@@ -8,10 +8,12 @@ import { TranslateService } from '@ngx-translate/core';
     styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
+    gestor = localStorage.getItem("gestor");
+    proprietario = localStorage.getItem("proprietario");
     isActive: boolean = false;
     showMenu: string = '';
     pushRightClass: string = 'push-right';
-
+    nome = localStorage.getItem("nome");
     constructor(private translate: TranslateService, public router: Router) {
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de']);
         this.translate.setDefaultLang('en');

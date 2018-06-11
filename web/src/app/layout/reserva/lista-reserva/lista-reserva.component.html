@@ -27,7 +27,7 @@
     					<th>Hora Marcada</th>
     					<th>Estado</th>
     				</tr>
-    				<tr *ngFor="let reserva of reservas | async; let i = index">
+    				<tr *ngFor="let reserva of reservas | async ; let i = index">
     					<td>{{ reserva.id_reserva }}</td>
     					<td>{{ reserva.Veiculo.marca }} - {{ reserva.Veiculo.modelo }} </td>
     					<td>{{ reserva.Veiculo.placa }}</td>

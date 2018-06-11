@@ -12,6 +12,7 @@ import { ColaboradorService } from './layout/service/colaborador.service';
 import { VagaService } from './layout/service/vaga.service';
 import { ReservaService } from './layout/service/reserva.service';
 import { SensorService } from './layout/service/sensor.service';
+import { GestorService } from './layout/service/gestor.service';
 import {Conf} from './layout/service/conf';
 
 import { FormsModule } from '@angular/forms';
@@ -44,7 +45,7 @@ export function createTranslateLoader(http: HttpClient) {
         AppRoutingModule
     ],
     declarations: [AppComponent, MenuComponent],
-    providers: [AuthGuard, EmpresaService, EstabelecimentoService, ColaboradorService, VagaService, ReservaService, SensorService, Conf],
+    providers: [AuthGuard, EmpresaService, EstabelecimentoService, ColaboradorService, VagaService, ReservaService, SensorService, Conf,GestorService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
