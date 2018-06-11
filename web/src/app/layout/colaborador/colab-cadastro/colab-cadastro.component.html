@@ -39,6 +39,7 @@
 		                    <input type="text" class="form-control" id="telefone" required [(ngModel)]="model.telefone" name="telefone" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
 		                </div>	               
 		                <button type="submit" class="btn btn-primary">Enviar</button>
+		                <a [routerLink]="['/colaborador/dados']"><button type="button" class="btn btn-primary">Cancelar</button></a>
 		            </form>	  
 		         </div>  
         	</section>      

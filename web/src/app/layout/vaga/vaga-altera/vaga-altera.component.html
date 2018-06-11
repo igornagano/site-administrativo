@@ -20,7 +20,7 @@
 		                </div>
 
 		                <div class="form-group" >
-		                    <label>Número</label>
+		                    <label>Número de Vagas</label>
 		                    <span>
 		                    <input type="text" class="form-control" required [(ngModel)]="model.numero" name="numero" #numero="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
 		                </div>
@@ -39,8 +39,8 @@
 		                </div>
 		               
 		                <button type="submit" class="btn btn-primary">Enviar</button>
-		                <a [routerLink]="['/vaga/dados']"><button type="button" class="btn btn-primary">Voltar
-		                </button></a>
+		                <button type="submit" class="btn btn-primary" (click)=" deletar()">Deletar</button>
+		                <a [routerLink]="['/vaga/dados']"><button type="button" class="btn btn-primary">Cancelar</button></a>
 		            </form>	  
 		         </div>  
         	</section>      

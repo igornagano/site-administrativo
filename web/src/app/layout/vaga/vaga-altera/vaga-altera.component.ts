@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Vaga } from '../../model/vaga';
 import { VagaService } from '../../service/vaga.service';
 import { routerTransition } from '../../../router.animations';
+import "rxjs/add/operator/map"; 
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-vaga-altera',
@@ -14,8 +18,7 @@ export class VagaAlteraComponent implements OnInit {
 
   model = {}
   
-  constructor(private vagaService: VagaService,
-    private route: ActivatedRoute) { }
+  constructor(private vagaService: VagaService, private route: ActivatedRoute,  private router: Router) { }
 
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
@@ -25,12 +28,15 @@ export class VagaAlteraComponent implements OnInit {
 
   onSubmit(){
     this.vagaService.putDados(this.model).subscribe(
-                    function(data){
+                    
+                      function(data){
                     	if(data == this.model){
                     		alert("Dados alterados com sucesso");
+                        // this.router.navigate(["/vaga/dados"]);
                     	}else{
                     		alert("Ocorreu um erro")
                     	}
-                      });;
+                    });;
+    }
   }
-}
+

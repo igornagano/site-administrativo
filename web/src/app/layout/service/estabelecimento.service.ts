@@ -48,10 +48,12 @@ export class EstabelecimentoService {
  }    
  setDados(estabelecimento){
  	this.estabelecimento = estabelecimento;
-    	return this.http.post(this.conf.url + "/estabelecimento",this.estabelecimento).subscribe(data => {
-
-        });
-	}
+    	return this.http.post(this.conf.url + "/estabelecimento",this.estabelecimento)
+        .pipe(
+            map(res=>res)
+            )
+        }
+	
 getPreco(estabelecimento){
         return this.http.get(this.conf.url + "/valores/estabelecimento/"+
             estabelecimento,this.estabelecimento)

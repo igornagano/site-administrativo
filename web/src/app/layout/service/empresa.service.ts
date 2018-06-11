@@ -4,8 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { Empresa } from '../model/empresa';
 import { Conf } from "./conf";
-const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 @Injectable()
