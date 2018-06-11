@@ -15,7 +15,6 @@ import { Router } from '@angular/router';
 })
 export class VagaCadastroComponent implements OnInit {
 
-  model = new Vaga('2','','','','');
   model = new Vaga('3','','','','');
 
   submitted = false;

@@ -36,7 +36,7 @@ export class ListaReservaComponent implements OnInit {
   ngOnInit() {
     
     this.reservas = this.reservaService.getReservasHoje(this.estabelecimento).map((res) =>{
-          
+     
         return res;
     });
     
