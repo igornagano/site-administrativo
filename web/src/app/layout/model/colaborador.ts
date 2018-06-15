@@ -7,6 +7,7 @@ export class Colaborador {
 	public email;
 	public cpf;
 	public telefone;
+	public id_estabelecimento;
 
 	constructor( 
 		nome,
@@ -15,8 +16,8 @@ export class Colaborador {
 		telefone,
 		senha,
 		id_empresa,
-		id_colaborador
-
+		id_colaborador,
+		id_estabelecimento
 	){
 		this.nome = nome,
 		this.email = email,
@@ -25,6 +26,7 @@ export class Colaborador {
 		this.telefone = telefone,
 		this.id_empresa = id_empresa;
 		this.id_colaborador = id_colaborador;
+		this.id_estabelecimento = id_estabelecimento;
 	}
 
 }

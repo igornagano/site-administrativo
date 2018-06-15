@@ -54,8 +54,16 @@ export class ColaboradorService {
  } 
 
  putDados(colaborador){
- 	this.colaborador = colaborador;
- 	return this.http.put(this.conf.url + "/colaborador/"+this.colaborador['id_colaborador'],this.colaborador,httpOptions)
+ 	var colab  = {
+         'id_colaborador': colaborador['id_colaborador'],
+         'id_usuario': colaborador['Usuarios']['id_usuario'],
+        'nome': colaborador['Usuarios']['nome'],
+        'email': colaborador['Usuarios']['email'],
+         'senha': colaborador['Usuarios']['senha'],
+         'cpf': colaborador['Usuarios']['cpf'],  
+         'telefone': colaborador['Usuarios']['telefone']
+    };
+ 	return this.http.put(this.conf.url + "/colaborador/"+colab['id_colaborador'],colab,httpOptions)
         .pipe(
             map(res=>res)
         )

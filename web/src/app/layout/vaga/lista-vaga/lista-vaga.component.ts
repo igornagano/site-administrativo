@@ -13,7 +13,7 @@ import "rxjs/add/operator/map";
 export class ListaVagaComponent implements OnInit {
 
   model
-
+  estabelecimento = localStorage.getItem("estabelecimento");
   submitted = false;
 
   onSubmit(){
@@ -28,7 +28,7 @@ export class ListaVagaComponent implements OnInit {
   }
 
   ngOnInit() {
-  		this.model = this.vagaService.getAll().map(res => res);
+  		this.model = this.vagaService.getestabelecimento(this.estabelecimento).map(res => res);
   }
 
   print(){

@@ -73,8 +73,8 @@ export class ListaReservaComponent implements OnInit {
             var minuto = hora_marcada[1];
 
 
-            var hora = new Date();
-            hora.setHours(hora,minuto,0 ,0);
+            var hora1 = new Date();
+            hora1.setHours(hora,minuto,0 ,0);
 
             if(agora.getTime() > hora.getTime()){
               console.log(res[i]);
@@ -85,6 +85,7 @@ export class ListaReservaComponent implements OnInit {
     });
       //Reserva.findAll({where: })
   }
-  setInterval(intervalFunc,60000);
+  
+  setInterval = (this.intervalFunc(),60000);
 
 }

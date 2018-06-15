@@ -15,16 +15,16 @@
 		               
 		                <div class="form-group">
 		                    <label>Nome</label>
-		                    <input type="text" class="form-control" required [(ngModel)]="model.nome" name="nome"#nome="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                    <input type="text" class="form-control" required [(ngModel)]="model['Usuarios']['nome']" name="nome"#nome="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>		                
 		                <div class="form-group" >
 		                    <label>Email</label>
 		                    <span>
-		                    <input type="text" class="form-control" id="email" required [(ngModel)]="model.email" name="email" #email="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
+		                    <input type="text" class="form-control" id="email" required [(ngModel)]="model['Usuarios']['email']" name="email" #email="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
 		                </div>
 		                <div class="form-group">
 		                    <label>Senha</label>
-		                    <input type="password" name="senha" class="form-control" required [(ngModel)]="model.senha" #senha="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                    <input type="password" name="senha" class="form-control" required [(ngModel)]="model['Usuarios']['senha']" #senha="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
 		                <!--<div class="form-group">
 		                    <label>Confirmar senha</label>
@@ -33,12 +33,12 @@
 		               <div class="form-group" >
 		                    <label>CPF</label>
 		                    <span>
-		                    <input type="text" class="form-control" id="cpf" required [(ngModel)]="model.cpf" name="cpf" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
+		                    <input type="text" class="form-control" id="cpf" required [(ngModel)]="model['Usuarios']['cpf']" name="cpf" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
 		                </div>
 		                <div class="form-group" >
 		                    <label>Telefone</label>
 		                    <span>
-		                    <input type="text" class="form-control" id="telefone" required [(ngModel)]="model.telefone" name="telefone" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
+		                    <input type="text" class="form-control" id="telefone" required [(ngModel)]="model['Usuarios']['telefone']" name="telefone" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
 		                </div>
 		               
 		                <button type="submit" class="btn btn-primary">Enviar</button>

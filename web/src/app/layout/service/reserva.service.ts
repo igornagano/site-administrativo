@@ -39,8 +39,7 @@ export class ReservaService {
         .pipe(
             map(res=>{
                 var resposta = res;
-                resposta = resposta.reverse();
-                
+                //resposta = resposta.reverse();
                 return  resposta
             })
         )

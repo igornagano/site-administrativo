@@ -25,9 +25,16 @@ export class VagaService {
 
   }
 
- getDados(id) {
-    return this.http.get(this.conf.url + "/vaga/"+id)
+ getestabelecimento(id) {
+    return this.http.get(this.conf.url + "/vaga/estabelecimento/"+id)
     	.pipe(
+            map(res=>res)
+        )
+ } 
+
+  getDados(id) {
+    return this.http.get(this.conf.url + "/vaga/"+id)
+        .pipe(
             map(res=>res)
         )
  } 
@@ -47,7 +54,7 @@ export class VagaService {
  }
 
  delet(id){
-    return this.http.get(this.conf.url + "/vaga/"+id).pipe(
+    return this.http.delete(this.conf.url + "/vaga/"+id).pipe(
             map(res=>res)
         )
  }

@@ -11,25 +11,20 @@ import { routerTransition } from '../../../router.animations';
   animations: [routerTransition()]
 })
 export class DadosColabComponent implements OnInit {
-
-  dados={};
-  model = new Colaborador('','','','','','','');
-
-  submitted = false;
-
+ colaborador = localStorage.getItem('colaborador');
+ estabelecimento = localStorage.getItem('estabelecimento');
+ empresa = localStorage.getItem('empresa');
+   dados 
+ 
   onSubmit(){
-    this.submitted = true;
+    }
+
+
+  constructor(private http: HttpClient, private colaboradorService: ColaboradorService) {
   }
 
-  pegardados(){
-    console.log(this.dados);
-  }
-
-  constructor(private http: HttpClient,private colaboradorService: ColaboradorService) {
-  }
-
- ngOnInit(): void {
-       this.colaboradorService.getDados('1').subscribe(
+ ngOnInit() {
+       this.colaboradorService.getDados(this.colaborador).subscribe(
                       data => this.dados = data)
   	}
 }

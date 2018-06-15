@@ -38,5 +38,18 @@ export class VagaAlteraComponent implements OnInit {
                     	}
                     });;
     }
-  }
 
+    deletar(){
+
+      if(confirm("Confirmar a exclusão?")){
+      this.vagaService.delet(this.model['id_vaga']).subscribe(res=>
+      {
+        alert("Vaga excluida");
+        this.router.navigate(["/vaga/lista"]);
+      }, error => {
+          alert("Ocorreu um erro!");
+          //this.router.navigate(["/estabelecimento/lista"]);
+      });
+    }
+  }
+}

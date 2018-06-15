@@ -1,8 +1,6 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
     <div class="list-group">
-        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard' | translate }}
-        </a>
+        
     
         <a [routerLink]="['/reservas/lista']" [routerLinkActive]="['router-link-active']" class="list-group-item"><span><i class="fa fa-plus"></i>&nbsp; {{ 'Reservas' | translate }}</span></a>
         
@@ -26,7 +24,7 @@
             </li>
         </div>
 
-         <div class="nested-menu" *ngIf="gestor!=undefined">
+         <div class="nested-menu" *ngIf="proprietario=='S'">
             <a class="list-group-item" (click)="addExpandClass('empresa')" >
                 <span><i class="fa fa-plus"></i>&nbsp; {{ 'Empresa' | translate }}</span>
             </a>
@@ -64,7 +62,7 @@
             </li>
         </div>
 
-        <div class="nested-menu">
+        <div class="nested-menu" *ngIf="gestor!=undefined">
             <a class="list-group-item" (click)="addExpandClass('vaga')">
                 <span><i class="fa fa-plus"></i>&nbsp; {{ 'Vaga' | translate }}</span>
             </a>
@@ -93,7 +91,7 @@
                 <li class="nested" [class.expand]="showMenu === 'profile'">
                     <ul class="submenu">
                         <li>
-                            <a href="javascript:void(0)">
+                            <a [routerLink]="['/colaborador/dados']">
                                 <span><i class="fa fa-fw fa-user"></i> {{ 'Profile' | translate }}</span>
                             </a>
                         </li>

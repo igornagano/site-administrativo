@@ -11,26 +11,34 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   animations: [routerTransition()]
 })
 export class ColabAlteraComponent implements OnInit {
-
+ colaborador = localStorage.getItem('colaborador');
+ estabelecimento = localStorage.getItem('estabelecimento');
+ empresa = localStorage.getItem('empresa');
   model = {}
   
   constructor(private colaboradorService: ColaboradorService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    let id = this.route.snapshot.paramMap.get('id');
-  	this.colaboradorService.getDados(id).subscribe(
-                      data => this.model = data);
+     this.colaboradorService.getDados(this.colaborador).subscribe(
+                      data => {
+                        console.log(data);
+                        this.model = data
+                      })
+    
   }
 
   onSubmit(){
-    this.colaboradorService.putDados(this.model).subscribe(
+
+    if(confirm("Confirmar Alteração?")){
+     this.colaboradorService.putDados(this.model).subscribe(
                     function(data){
-                    	if(data == this.model){
-                    		alert("Dados alterados com sucesso");
-                    	}else{
-                    		alert("Ocorreu um erro")
-                    	}
-                      });;
+                      if(data == this.model){
+                        alert("Dados alterados com sucesso");
+                      }else{
+                        alert("Ocorreu um erro")
+                      }
+                    });
+    }
   }
 }

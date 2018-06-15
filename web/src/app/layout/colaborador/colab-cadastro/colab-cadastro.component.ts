@@ -13,14 +13,16 @@ import { Router } from '@angular/router';
   animations: [routerTransition()]
 })
 export class ColabCadastroComponent implements OnInit {
-  model = new Colaborador('','','','','','','');
+  
+   colaborador = localStorage.getItem('colaborador');
+ estabelecimento = localStorage.getItem('estabelecimento');
+ empresa = localStorage.getItem('empresa');model = new Colaborador('','','','','',this.empresa,'',this.estabelecimento);
 
   submitted = false;
 
   onSubmit(){
     this.colaboradorService.setDados(this.model);
-    console.log('erro');
-
+    
     /*if(confirm("Confirmar o Cadastro?")){
       this.colaboradorService.setDados(this.model).subscribe((res) =>
       {

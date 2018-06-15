@@ -15,7 +15,8 @@ import { Router } from '@angular/router';
 })
 export class VagaCadastroComponent implements OnInit {
 
-  model = new Vaga('3','','','','');
+  estabelecimento = localStorage.getItem("estabelecimento");
+  model = new Vaga(this.estabelecimento,'','','','');
 
   submitted = false;
 
@@ -43,8 +44,6 @@ export class VagaCadastroComponent implements OnInit {
   }
 
    
-
-
   pegardados(){
     return JSON.stringify(this.model);
   }
