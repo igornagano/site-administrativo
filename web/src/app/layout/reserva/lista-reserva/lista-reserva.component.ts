@@ -77,13 +77,17 @@ export class ListaReservaComponent implements OnInit {
             hora1.setHours(hora,minuto,0 ,0);
 
             if(agora.getTime() > hora.getTime()){
-              console.log(res[i]);
+              res[i]['situacao'] = 'C';
+              this.reservaService.putDados(res[i]).subscribe((retorno =>{
+
+              }), error =>{
+                console.error("Não foi possivel alterar o pedido "+ res[i]['id_reserva']);
+              })
             }
           }
         }  
         return res;
     });
-      //Reserva.findAll({where: })
   }
   
   setInterval = (this.intervalFunc(),60000);

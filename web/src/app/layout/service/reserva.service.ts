@@ -38,8 +38,12 @@ export class ReservaService {
     return this.http.get(this.conf.url + "/reserva/estabelecimento/"+id_estabelecimento+"/"+dia+"/"+mes+"/"+ano)
         .pipe(
             map(res=>{
-                var resposta = res;
-                //resposta = resposta.reverse();
+                
+                var resposta = [];
+                for(var i in res){
+                    resposta.push(res[i]);
+                }
+                resposta = resposta.reverse();
                 return  resposta
             })
         )

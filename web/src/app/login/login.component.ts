@@ -35,9 +35,9 @@ export class LoginComponent implements OnInit {
         		this.gestorService.getDados(res['id_colaborador']).subscribe((resGestor =>{
         			localStorage.setItem('gestor', resGestor['id_gestor']);
         			localStorage.setItem('proprietario', resGestor['proprietario']);
-        			this.router.navigate(["/reserva/lista"]);
+        			this.router.navigate(["/reservas/lista"]);
         		}), error=>{
-        			this.router.navigate(["/reserva/lista"]);
+        			this.router.navigate(["/reservas/lista"]);
         		})
 
         		
