@@ -75,8 +75,9 @@ export class ColaboradorService {
     this.colaborador['cpf'] = colaborador.cpf;
     this.colaborador['telefone'] = colaborador.telefone;
     
-   return this.http.post(this.conf.url + "/colaborador",  this.colaborador).subscribe(data => {
-        this.colaborador['id_colaborador'] = data['id_colaborador'];
-        });
-	}
+   return this.http.post(this.conf.url + "/colaborador",  this.colaborador)
+        .pipe(
+            map(res=>res)
+        )
+    }
 }

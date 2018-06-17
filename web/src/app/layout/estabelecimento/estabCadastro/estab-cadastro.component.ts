@@ -14,7 +14,9 @@ import { Router } from '@angular/router';
   animations: [routerTransition()]
 })
 export class EstabCadastroComponent implements OnInit {
-  model = new Estabelecimento('','','1','','');
+
+  empresa = localStorage.getItem('empresa');
+  model = new Estabelecimento('','',this.empresa,'','');
 
   submitted = false;
 
@@ -27,7 +29,7 @@ export class EstabCadastroComponent implements OnInit {
       this.estabelecimentoService.setDados(this.model).subscribe((res) =>
       {
         alert("Cadastro realizado");
-        this.router.navigate(["/estabelecimento/dados"]);
+        this.router.navigate(["/estabelecimento/lista"]);
       }, error => {
           alert("Ocorreu um erro!");
           //this.router.navigate(["/estabelecimento/lista"]);

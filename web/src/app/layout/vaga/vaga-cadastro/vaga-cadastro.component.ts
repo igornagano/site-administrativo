@@ -22,12 +22,6 @@ export class VagaCadastroComponent implements OnInit {
 
 
   onSubmit(){
-    /*this.vagaService.setDados(this.model).subscribe((res)=>
-    {
-      var id = res['id_vaga'];
-      var dados = { id_vaga: id }
-            alert("Cadastrado com Sucesso");
-    });*/
 
     if(confirm("Confirmar o Cadastro?")){
       this.vagaService.setDados(this.model).subscribe((res)=>
@@ -35,7 +29,7 @@ export class VagaCadastroComponent implements OnInit {
         var id = res['id_vaga'];
         var dados = { id_vaga: id }
         alert("Cadastro realizado");
-        this.router.navigate(["/estabelecimento/dados"]);
+        this.router.navigate(["/vaga/lista"]);
       }, error => {
           alert("Ocorreu um erro!");
           //this.router.navigate(["/estabelecimento/lista"]);

@@ -14,25 +14,26 @@ import { Router } from '@angular/router';
 })
 export class ColabCadastroComponent implements OnInit {
   
-   colaborador = localStorage.getItem('colaborador');
+ colaborador = localStorage.getItem('colaborador');
  estabelecimento = localStorage.getItem('estabelecimento');
- empresa = localStorage.getItem('empresa');model = new Colaborador('','','','','',this.empresa,'',this.estabelecimento);
+ empresa = localStorage.getItem('empresa');
+ model = new Colaborador('','','','','',this.empresa,'',this.estabelecimento);
 
   submitted = false;
 
   onSubmit(){
-    this.colaboradorService.setDados(this.model);
+    //this.colaboradorService.setDados(this.model);
     
-    /*if(confirm("Confirmar o Cadastro?")){
+    if(confirm("Confirmar o Cadastro?")){
       this.colaboradorService.setDados(this.model).subscribe((res) =>
       {
         alert("Cadastro realizado");
-        this.router.navigate(["/colaborador/dados"]);
+        this.router.navigate(["/colaborador/lista"]);
       }, error => {
           alert("Ocorreu um erro!");
           //this.router.navigate(["/estabelecimento/lista"]);
       })
-    }*/
+    }
   }
 
   pegardados(){
