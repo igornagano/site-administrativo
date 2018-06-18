@@ -47,16 +47,53 @@ export class EstabelecimentoService {
         )
  }    
  setDados(estabelecimento){
- 	this.estabelecimento = estabelecimento;
+ 	this.estabelecimento ={
+        'unidade': estabelecimento['unidade'],
+        'endereco': estabelecimento['endereco'],
+        'horario_inicio': estabelecimento['horario_inicio'],
+        'horario_fim': estabelecimento['horario_fim'],
+        'id_empresa': estabelecimento['id_empresa']
+    };
     	return this.http.post(this.conf.url + "/estabelecimento",this.estabelecimento)
         .pipe(
-            map(res=>res)
+            map(res=>{
+                    var hora = estabelecimento['cobrar'].split(":");
+                    var tempo = parseInt(hora[0])*60 + parseInt(hora[1]);                 
+                    var dados = {
+                        "id_estabelecimento":res['id_estabelecimento'],
+                        "valor":estabelecimento['valor_hora'].replace(",","."),
+                        "hora": tempo
+                    }
+                    res['Valores'] = this.http.post(this.conf.url + "/valores",dados).subscribe(resposta=>{
+                            return resposta;
+                    }, error=>{
+                        return null
+                    });
+
+                    return res
+                })
             )
         }
 	
 getPreco(estabelecimento){
         return this.http.get(this.conf.url + "/valores/estabelecimento/"+
-            estabelecimento,this.estabelecimento)
+            estabelecimento)
+        .pipe(
+            map(res=>{
+                return res
+            })
+        )
+    }   
+putPreco(valor){
+     var hora = valor['hora'].split(":");
+     var tempo = parseInt(hora[0])*60 + parseInt(hora[1]);
+      var dados = {
+                        "id_estabelecimento":valor['id_estabelecimento'],
+                        "valor":valor['valor'].replace(",","."),
+                        "hora": tempo
+                    }        
+        return this.http.put(this.conf.url + "/valores/"+
+            valor['id_valores'], dados)
         .pipe(
             map(res=>res)
         )

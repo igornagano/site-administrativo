@@ -39,6 +39,7 @@ export class ListaReservaComponent implements OnInit {
      
         return res;
     });
+    var interval = setInterval( () => { this.intervalFunc(); },60000);
     
   }
   
@@ -64,32 +65,13 @@ export class ListaReservaComponent implements OnInit {
 
 
   intervalFunc() {
+
     var agora = new Date();
-      this.reservas = this.reservaService.getReservasHoje(this.estabelecimento).map((res) =>{
-        for(var i in res){
-          if(res[i]['situacao'] == "A"){
-            var hora_marcada = res[i]['hora_marcada'].split(":");
-            var hora = hora_marcada[0];
-            var minuto = hora_marcada[1];
-
-
-            var hora1 = new Date();
-            hora1.setHours(hora,minuto,0 ,0);
-
-            if(agora.getTime() > hora.getTime()){
-              res[i]['situacao'] = 'C';
-              this.reservaService.putDados(res[i]).subscribe((retorno =>{
-
-              }), error =>{
-                console.error("Não foi possivel alterar o pedido "+ res[i]['id_reserva']);
-              })
-            }
-          }
-        }  
+      this.reservas = this.reservaService.getReservasHoje(this.estabelecimento).map((res) =>{  
         return res;
     });
   }
   
-  setInterval = (this.intervalFunc(),60000);
+  
 
 }

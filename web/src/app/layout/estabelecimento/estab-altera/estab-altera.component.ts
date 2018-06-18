@@ -13,7 +13,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 export class EstabAlteraComponent implements OnInit {
 
   model = {}
-  
+  valores = {}
   constructor(private estabelecimentoService: EstabelecimentoService,
     private route: ActivatedRoute) { }
 
@@ -21,16 +21,38 @@ export class EstabAlteraComponent implements OnInit {
     let id = this.route.snapshot.paramMap.get('id');
   	this.estabelecimentoService.getDados(id).subscribe(
                       data => this.model = data);
+
+    this.estabelecimentoService.getPreco(id).subscribe(
+      (valor=>{
+        this.valores = valor[0];
+        var hora = parseInt(this.valores['hora']);
+        this.valores['hora'] = this.stringHora(Math.floor(hora/60))+":"+this.stringHora(hora%60);
+        this.valores['valor'] = this.numberToReal(this.valores['valor']);
+      }), error=>{
+        alert("Ocorreu um erro ao carregar os valores")
+      });
   }
 
+  numberToReal(numero) {
+    var numero = numero.toFixed(2).split('.');
+    numero[0] = numero[0].split(/(?=(?:...)*$)/).join('.');
+    return numero.join(',');
+ }
+ stringHora(numero){
+  var str = "" + numero;
+  var pad = "00";
+  var ans = pad.substring(0, pad.length - str.length) + str;
+  return ans
+ }
   onSubmit(){
-    this.estabelecimentoService.putDados(this.model).subscribe(
-                    function(data){
-                    	if(data == this.model){
-                    		alert("Dados alterados com sucesso");
-                    	}else{
-                    		alert("Ocorreu um erro")
-                    	}
-                      });;
+    this.estabelecimentoService.putDados(this.model).subscribe(data=>{
+      this.estabelecimentoService.putPreco(this.valores).subscribe(valor=>{
+          alert("Dados alterados com sucesso");
+      }, error=>{
+                alert("Ocorreu um erro")
+    })
+    }, error=>{
+                alert("Ocorreu um erro")
+    });
   }
 }

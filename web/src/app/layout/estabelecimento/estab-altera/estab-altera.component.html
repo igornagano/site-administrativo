@@ -33,6 +33,16 @@
 		                    <label>Fim do funcionamento</label>
 		                    <input type="text" name="horario_fim" class="form-control" required [(ngModel)]="model.horario_fim" #horario_fim="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
+
+		                <div class="form-group">
+		                    <label>Cobrar a cada</label>
+		                    <input type="time" name="cobrar" class="form-control" required [(ngModel)]="valores.hora" #cobrar="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                </div>
+
+		                   <div class="form-group">
+		                    <label>Valor da hora</label>
+		                    <input type="text" name="valor_hora" class="form-control" required [(ngModel)]="valores.valor" #valor_hora="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                </div>
 		                		               
 		                <button type="submit" class="btn btn-primary">Enviar</button>
 		                <button type="button" class="btn btn-primary" (click)=" deletar()">Deletar</button>

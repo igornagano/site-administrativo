@@ -19,6 +19,7 @@ export class DetalhesReservaComponent implements OnInit {
   hora = 0;
   valor = 0;
   reserva = null;
+  estabelecimento = localStorage.getItem("estabelecimento");
 
     situacao = {
     'A': "Aguardando",
@@ -51,16 +52,15 @@ export class DetalhesReservaComponent implements OnInit {
   calcularPreco(){
     var hora_entrada = new Date(this.reserva.hora_entrada).getTime();
     var now = new Date().getTime();
-    var hora_ms = (1000*60*60);
-    var diferenca = (now - hora_entrada) / hora_ms;
+    var minuto_ms = (1000*60);
+    var diferenca = (now - hora_entrada) / minuto_ms;
     
-    this.estabelecimentoService.getPreco("1").subscribe((res) =>
+    this.estabelecimentoService.getPreco(this.estabelecimento).subscribe((res) =>
     {
-      console.log(res);
+      
       this.preco = res[0].valor;
       this.hora = res[0].hora;
 
-      console.log(this.hora);
       var quantidade =  Math.ceil((diferenca/(this.hora)));
       
       this.valor = (quantidade * this.preco);

@@ -22,9 +22,6 @@ export class EstabCadastroComponent implements OnInit {
 
 
   onSubmit(){
-    console.log(this.model);
-    //this.estabelecimentoService.setDados(this.model);
-      
      if(confirm("Confirmar o Cadastro?")){
       this.estabelecimentoService.setDados(this.model).subscribe((res) =>
       {
