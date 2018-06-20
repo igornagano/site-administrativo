@@ -15,7 +15,28 @@ export class EmpresaCadastroComponent implements OnInit {
   submitted = false;
 
   onSubmit(){
-    this.empresaService.setDados(this.model);
+    this.empresaService.setDados(this.model).subscribe((res)=>{
+      var usuario = {};
+      usuario['id_empresa'] = ""+res['id_empresa'];
+      usuario['nome'] = this.model.nomeProprietario;
+      usuario['cpf'] = this.model.cpf;
+      usuario['email'] = this.model.email;
+      usuario['telefone'] = this.model.telefone;
+      usuario['senha'] = "teste123456";
+      console.log(usuario);
+      this.empresaService.setColaborador(usuario).subscribe((res_colab)=>{
+          var gestor = {};
+          gestor['id_colaborador'] = res_colab['id_colaborador'];
+          gestor['proprietario']  = "S";
+          this.empresaService.setGestor(gestor).subscribe((res_gestor)=>{
+              alert("Cadastrado com sucesso");
+          });
+      })
+
+      
+    }, error=>{
+      alert("Ocorreu um erro");
+    });
 
     /*this.empresaService.setDados(this.model).subscribe((res)=>
     {
