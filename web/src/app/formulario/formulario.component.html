@@ -1,0 +1,35 @@
+<html ng-app="formulario">
+<header>
+	<title>Teste Dados</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+	<script type="text/javascript" src="formularioController.js"></script>
+</header>
+
+<div>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</div>
+
+<div class="container-fluid">
+	<div>
+		<h1><strong>Nome do Usuário</strong></h1>
+		<div class="card">
+			<div class="card-header">
+				<h3>Dados Pessoais</h3>
+			</div>
+			<div class="card-body">
+				<div align="right">
+					<a href="#">Editar</a>
+				</div>
+				<div ng-controller="dados">
+					<label><strong>E-mail:</strong></label>
+						<span> {{dados.email}}</span><br />
+					<label><strong>CPF:</strong></label>
+						<span>{{dados.cpf}}</span><br />
+					<label><strong>Telefone:</strong></label>
+						<span>{{dados.telefone}}</span><br />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</html>
