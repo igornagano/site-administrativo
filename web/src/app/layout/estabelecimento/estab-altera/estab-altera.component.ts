@@ -3,6 +3,7 @@ import { Estabelecimento } from '../../model/estabelecimento';
 import { EstabelecimentoService } from '../../service/estabelecimento.service';
 import { routerTransition } from '../../../router.animations';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-estab-altera',
@@ -14,8 +15,7 @@ export class EstabAlteraComponent implements OnInit {
 
   model = {}
   valores = {}
-  constructor(private estabelecimentoService: EstabelecimentoService,
-    private route: ActivatedRoute) { }
+  constructor(private estabelecimentoService: EstabelecimentoService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
@@ -45,14 +45,18 @@ export class EstabAlteraComponent implements OnInit {
   return ans
  }
   onSubmit(){
-    this.estabelecimentoService.putDados(this.model).subscribe(data=>{
-      this.estabelecimentoService.putPreco(this.valores).subscribe(valor=>{
-          alert("Dados alterados com sucesso");
+
+        if(confirm("Confirmar a Alteração?")){
+        this.estabelecimentoService.putDados(this.model).subscribe(data=>{
+        this.estabelecimentoService.putPreco(this.valores).subscribe(valor=>{
+            alert("Dados alterados com sucesso");
+            this.router.navigate(["/estabelecimento/lista"]);
       }, error=>{
                 alert("Ocorreu um erro")
     })
     }, error=>{
                 alert("Ocorreu um erro")
     });
+    }
   }
 }

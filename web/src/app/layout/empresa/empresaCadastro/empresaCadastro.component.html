@@ -29,7 +29,7 @@
 		                <div class="form-group" novalidate>
 		                    <label>Nome</label>
 		                    <span>
-		                    <input type="text" class="form-control" id="nome" [(ngModel)]="model.nome" name="nome" #nome="ngModel" [ngModelOptions]="{ updateOn: 'change'}" required ></span>
+		                    <input type="text" class="form-control" id="nome" required [(ngModel)]="model.nome" name="nome" #nome="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
 		                </div>
 
 		                <div class="form-group">
@@ -44,12 +44,12 @@
 
 		                <div class="form-group">
 		                    <label>CNPJ</label>
-		                    <input type="text" name="cnpj" class="form-control" maxlength="14" placeholder="##.###.### / ####-##" required [(ngModel)]="model.cnpj" #cnpj="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                    <input type="text" name="cnpj" class="form-control" ng-maxlength="14" placeholder="##.###.### / ####-##" required [(ngModel)]="model.cnpj" #cnpj="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
 
 		                <div class="form-group">
 		                    <label>Telefone</label>
-		                    <input type="text" name="telefone" class="form-control" maxlength="13" required="required" [(ngModel)]="model.telefone" #telefone="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                    <input type="text" name="telefone" class="form-control" ng-minlength="13" ng-maxlength="13" required [(ngModel)]="model.telefone" #telefone="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
 
 		                <div class="form-group">
@@ -59,7 +59,7 @@
 
 		                <div class="form-group">
 		                    <label>CPF</label>
-		                    <input type="text" name="CPF" id="cpf" class="form-control" ng-model="cpf" maxlength="11" required [(ngModel)]="model.cpf" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                    <input type="text" name="CPF" id="cpf" class="form-control" ng-model="cpf" ng-maxlength="11" required [(ngModel)]="model.cpf" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
 
 		                <!-- SUBMIT BUTTON -->

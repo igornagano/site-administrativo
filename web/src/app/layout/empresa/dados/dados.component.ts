@@ -15,6 +15,7 @@ export class DadosComponent implements OnInit {
  	dados={};
   //model = new Empresa('Teste Nome', 'Teste Email', 'Teste CPF', 'Teste Telefone','Nome Fantasia', 
    // 'Nome Proprietario', 'CNPJ');
+   empresa = localStorage.getItem('empresa');
    model = new Empresa('','','','','','','');
 
   submitted = false;
@@ -30,7 +31,7 @@ export class DadosComponent implements OnInit {
   }
  	
   ngOnInit(): void {
-       this.empresaService.getDados('1').subscribe(
+       this.empresaService.getDados(this.empresa).subscribe(
                       data => this.dados = data)
   		 /*this.http.get("http://localhost:8000/cliente/usuario/teste2@teste.com").subscribe(data => {
           console.log(data);

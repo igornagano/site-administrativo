@@ -32,7 +32,7 @@ export class VagaAlteraComponent implements OnInit {
                       function(data){
                     	if(data == this.model){
                     		alert("Dados alterados com sucesso");
-                        // this.router.navigate(["/vaga/dados"]);
+                        this.router.navigate(["/vaga/lista"]);
                     	}else{
                     		alert("Ocorreu um erro")
                     	}

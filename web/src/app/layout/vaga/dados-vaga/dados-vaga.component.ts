@@ -13,7 +13,9 @@ import { routerTransition } from '../../../router.animations';
 export class DadosVagaComponent implements OnInit {
 
   dados={};
-  model = new Vaga('','','','','');
+  estabelecimento = localStorage.getItem("estabelecimento");
+  vaga = localStorage.getItem("vaga");
+  model = new Vaga(this.estabelecimento,'','','','');
 
   submitted = false;
 
@@ -29,12 +31,8 @@ export class DadosVagaComponent implements OnInit {
   }
 
  ngOnInit(): void {
-       this.vagaService.getDados('1').subscribe(
+       this.vagaService.getDados(this.vaga).subscribe(
                       data => this.dados = data)
-  		 /*this.http.get("http://localhost:8000/cliente/usuario/teste2@teste.com").subscribe(data => {
-          console.log(data);
-  	  		this.dados = data;
-  	  })*/
   	}
 
 }

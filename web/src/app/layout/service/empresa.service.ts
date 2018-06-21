@@ -52,21 +52,20 @@ export class EmpresaService {
   	this.empresa['razao_social'] = empresa.nome;
   	this.empresa['cnpj'] = empresa.cnpj;
 
-  
- 	    return this.http.post(this.conf.url + "/empresa",  this.empresa).pipe(
-            map(res=>res)
-        )
-	}
+  	this.usuario['nome'] = empresa.nomeProprietario;
+  	this.usuario['cpf'] = empresa.cpf;
+  	this.usuario['email'] = empresa.email;
+  	this.usuario['telefone'] = empresa.telefone;
+  	this.usuario['senha'] = "teste123456";
 
-setColaborador(colaborador){
- return this.http.post(this.conf.url + "/colaborador", colaborador).pipe(
-            map(res=>res)
-        )
-}
- setGestor(gestor){
-  gestor['proprietario'] = "S";
-     return this.http.post(this.conf.url + "/gestor", gestor).pipe(
-            map(res=>res)
-        )
- }
+ 	  this.http.post(this.conf.url + "/empresa",  this.empresa).subscribe(data => {    
+	  this.usuario['id_empresa'] = data['id_empresa'];
+	  this.http.post(this.conf.url + "/colaborador", this.usuario,httpOptions).subscribe(data_colaborador => {
+	  this.gestor['id_colaborador'] = data['id_colaborador'];
+	  this.http.post(this.conf.url + "gestor", this.gestor,httpOptions).subscribe(data_gestor => {
+	    		
+			});
+		});
+	});
+	}
 }

@@ -24,6 +24,8 @@ export class EmpresaAlterarComponent implements OnInit {
 
 
   onSubmit(){
+
+    if(confirm("Confirmar a Alteração?")){
     this.empresaService.putDados(this.model).subscribe(
                     function(data){
                     	if(data == this.model){
@@ -32,5 +34,6 @@ export class EmpresaAlterarComponent implements OnInit {
                     		alert("Ocorreu um erro")
                     	}
                       });;
-  }
+        }
+      }
 }

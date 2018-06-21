@@ -3,6 +3,7 @@ import { Colaborador } from '../../model/colaborador';
 import { ColaboradorService } from '../../service/colaborador.service';
 import { routerTransition } from '../../../router.animations';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-colab-altera',
@@ -16,8 +17,7 @@ export class ColabAlteraComponent implements OnInit {
  empresa = localStorage.getItem('empresa');
   model = {}
   
-  constructor(private colaboradorService: ColaboradorService,
-    private route: ActivatedRoute) { }
+  constructor(private colaboradorService: ColaboradorService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
      this.colaboradorService.getDados(this.colaborador).subscribe(
@@ -35,6 +35,7 @@ export class ColabAlteraComponent implements OnInit {
                     function(data){
                       if(data == this.model){
                         alert("Dados alterados com sucesso");
+                        this.router.navigate(["/colaborador/lista"]);
                       }else{
                         alert("Ocorreu um erro")
                       }
