@@ -15,6 +15,8 @@ export class EmpresaCadastroComponent implements OnInit {
   submitted = false;
 
   onSubmit(){
+    if(confirm("Deseja registrar essa Empresa?")){
+     
     this.empresaService.setDados(this.model).subscribe((res)=>{
       var usuario = {};
       usuario['id_empresa'] = ""+res['id_empresa'];
@@ -37,7 +39,8 @@ export class EmpresaCadastroComponent implements OnInit {
     }, error=>{
       alert("Ocorreu um erro");
     });
-
+ 
+    }
     /*this.empresaService.setDados(this.model).subscribe((res)=>
     {
           alert("Cadastrado com Sucesso");
