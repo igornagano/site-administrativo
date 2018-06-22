@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Empresa } from '../../model/empresa';
 import { EmpresaService } from '../../service/empresa.service';
 import { routerTransition } from '../../../router.animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-empresa',
@@ -32,6 +33,7 @@ export class EmpresaCadastroComponent implements OnInit {
           gestor['proprietario']  = "S";
           this.empresaService.setGestor(gestor).subscribe((res_gestor)=>{
               alert("Cadastrado com sucesso");
+               this.router.navigate(["/empresa/lista"]);
           });
       })
 
@@ -51,7 +53,7 @@ export class EmpresaCadastroComponent implements OnInit {
     return JSON.stringify(this.model);
   }
 
-  constructor(private empresaService: EmpresaService) {
+  constructor(private empresaService: EmpresaService , private router: Router) {
    }
 
   ngOnInit() {

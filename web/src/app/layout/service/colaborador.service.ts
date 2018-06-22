@@ -46,22 +46,35 @@ export class ColaboradorService {
         )
  } 
  getAll() {
-    console.log("aqui")
     return this.http.get(this.conf.url + "/colaborador")
     	.pipe(
             map(res=>res) 
         )
  } 
+ getEstabelecimento(estabelecimento) {
+    return this.http.get(this.conf.url + "/colaborador/estabelecimento/"+estabelecimento)
+        .pipe(
+            map(res=>res) 
+        )
+ } 
+ getEmpresa(empresa) {
+    return this.http.get(this.conf.url + "/colaborador/empresa/"+empresa)
+        .pipe(
+            map(res=>res) 
+        )
+ }
 
  putDados(colaborador){
  	var colab  = {
-         'id_colaborador': colaborador['id_colaborador'],
-         'id_usuario': colaborador['Usuarios']['id_usuario'],
+        'id_colaborador': colaborador['id_colaborador'],
+        'id_empresa': colaborador['id_empresa'],
+        'id_estabelecimento': colaborador['id_estabelecimento'],
+        'id_usuario': colaborador['Usuarios']['id_usuario'],
         'nome': colaborador['Usuarios']['nome'],
         'email': colaborador['Usuarios']['email'],
-         'senha': colaborador['Usuarios']['senha'],
-         'cpf': colaborador['Usuarios']['cpf'],  
-         'telefone': colaborador['Usuarios']['telefone']
+        'senha': colaborador['Usuarios']['senha'],
+        'cpf': colaborador['Usuarios']['cpf'],  
+        'telefone': colaborador['Usuarios']['telefone']
     };
  	return this.http.put(this.conf.url + "/colaborador/"+colab['id_colaborador'],colab,httpOptions)
         .pipe(
@@ -74,6 +87,8 @@ export class ColaboradorService {
     this.colaborador['senha'] = colaborador.senha;
     this.colaborador['cpf'] = colaborador.cpf;
     this.colaborador['telefone'] = colaborador.telefone;
+    this.colaborador['id_empresa'] = colaborador['id_empresa'];
+    this.colaborador['id_estabelecimento']= colaborador['id_estabelecimento'];
     
    return this.http.post(this.conf.url + "/colaborador",  this.colaborador)
         .pipe(

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Colaborador } from '../../model/colaborador';
 import { ColaboradorService } from '../../service/colaborador.service';
+import { EstabelecimentoService } from '../../service/estabelecimento.service';
 import { routerTransition } from '../../../router.animations';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Router } from '@angular/router';
@@ -13,32 +14,44 @@ import { Router } from '@angular/router';
 })
 export class ColabAlteraComponent implements OnInit {
  colaborador = localStorage.getItem('colaborador');
+ gestor = localStorage.getItem('gestor');
  estabelecimento = localStorage.getItem('estabelecimento');
  empresa = localStorage.getItem('empresa');
+ proprietario = localStorage.getItem('proprietario');
+ estabelecimentos
   model = {}
   
-  constructor(private colaboradorService: ColaboradorService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private colaboradorService: ColaboradorService, private estabelecimentoService: EstabelecimentoService,private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-     this.colaboradorService.getDados(this.colaborador).subscribe(
+     if(this.gestor == undefined){
+          this.colaboradorService.getDados(this.colaborador).subscribe(
                       data => {
                         console.log(data);
                         this.model = data
                       })
-    
+   } else{
+    var id = this.route.snapshot.paramMap.get('id');
+    this.colaboradorService.getDados(id).subscribe(
+                      data => {
+                         console.log(data);
+                        this.model = data
+                      })
+   }
+    if(this.proprietario == "S")
+      this.estabelecimentoService.getEmpresa(this.empresa).subscribe(
+                      data => this.estabelecimentos = data);
   }
 
   onSubmit(){
 
     if(confirm("Confirmar Alteração?")){
      this.colaboradorService.putDados(this.model).subscribe(
-                    function(data){
-                      if(data == this.model){
+                   (data)=>{
                         alert("Dados alterados com sucesso");
-                        this.router.navigate(["/colaborador/lista"]);
-                      }else{
+                        this.router.navigate(["/colaborador/lista"]); 
+                    }, error=>{
                         alert("Ocorreu um erro")
-                      }
                     });
     }
   }

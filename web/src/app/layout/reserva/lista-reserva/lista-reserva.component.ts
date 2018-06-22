@@ -29,7 +29,7 @@ export class ListaReservaComponent implements OnInit {
     'C': "Cancelado",
     'F': "Finalizado"
   }
-  constructor(private reservaService: ReservaService,  private router: Router) {
+  constructor(private reservaService: ReservaService, private router: Router) {
 
   }
 

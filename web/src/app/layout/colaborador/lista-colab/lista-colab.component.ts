@@ -12,6 +12,8 @@ import "rxjs/add/operator/map";
 })
 export class ListaColabComponent implements OnInit {
 
+  empresa = localStorage.getItem("empresa");
+  estabelecimento = localStorage.getItem("estabelecimento");
   model
 
   submitted = false;

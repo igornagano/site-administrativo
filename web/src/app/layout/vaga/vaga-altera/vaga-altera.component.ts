@@ -27,16 +27,16 @@ export class VagaAlteraComponent implements OnInit {
   }
 
   onSubmit(){
+     if(confirm("Confirmar a Alteração?")){
     this.vagaService.putDados(this.model).subscribe(
-                    
-                      function(data){
-                    	if(data == this.model){
+                     (data)=>{
                     		alert("Dados alterados com sucesso");
                         this.router.navigate(["/vaga/lista"]);
-                    	}else{
-                    		alert("Ocorreu um erro")
-                    	}
-                    });;
+                    	
+                    }, error=>{
+                          alert("Ocorreu um erro")
+                    });
+          }
     }
 
     deletar(){

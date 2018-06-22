@@ -3,6 +3,7 @@ import { Empresa } from '../../model/empresa';
 import { EmpresaService } from '../../service/empresa.service';
 import { routerTransition } from '../../../router.animations';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-empresa-alterar',
@@ -13,8 +14,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 export class EmpresaAlterarComponent implements OnInit {
   model = {}
   
-  constructor(private empresaService: EmpresaService,
-    private route: ActivatedRoute) { }
+  constructor(private empresaService: EmpresaService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
@@ -26,13 +26,14 @@ export class EmpresaAlterarComponent implements OnInit {
   onSubmit(){
 
     if(confirm("Confirmar a Alteração?")){
-    this.empresaService.putDados(this.model).subscribe(
-                    function(data){
-                    	if(data == this.model){
+    this.empresaService.putDados(this.model).subscribe((data)=>{
+                    	
                     		alert("Dados alterados com sucesso");
-                    	}else{
-                    		alert("Ocorreu um erro")
-                    	}
+                        this.router.navigate(["/empresa/lista"]);
+                    	
+                      }, error=>{
+                                              alert("Ocorreu um erro")
+
                       });;
         }
       }

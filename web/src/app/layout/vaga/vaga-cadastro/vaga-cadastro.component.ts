@@ -42,10 +42,8 @@ export class VagaCadastroComponent implements OnInit {
     return JSON.stringify(this.model);
   }
 
-  constructor(private vagaService: VagaService , private sensorService: SensorService, private route: ActivatedRoute,  private router: Router)
-  {
-
-
+  constructor(private vagaService: VagaService , private sensorService: SensorService, 
+    private route: ActivatedRoute, private router: Router){
    }
 
   ngOnInit() {   

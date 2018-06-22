@@ -30,6 +30,13 @@ export class EstabelecimentoService {
             map(res=>res)
         )
  } 
+ getEmpresa(id) {
+    return this.http.get(this.conf.url + "/estabelecimento/empresa/"+id)
+        .pipe(
+            map(res=>res)
+        )
+ } 
+
 
  getAll() {
     return this.http.get(this.conf.url + "/estabelecimento")

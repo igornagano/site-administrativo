@@ -24,20 +24,27 @@
 		                    <label>Senha</label>
 		                    <input type="password" name="senha" class="form-control" required [(ngModel)]="model.senha" #senha="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
-		                <!--<div class="form-group">
-		                    <label>Confirmar senha</label>
-		                    <input type="password" name="confsenha" class="form-control" required [(ngModel)]="model.confsenha" #confsenha="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
-		                </div>-->	               
+		                <div class="form-group">
+		                    <label>Confirmar Senha</label>
+		                    <input type="password" name="confsenha" class="form-control" required [(ngModel)]="senhas.confsenha" #confsenha="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                </div>	               
 		               <div class="form-group" >
 		                    <label>CPF</label>
 		                    <span>
-		                    <input type="text" class="form-control" id="cpf" required [(ngModel)]="model.cpf" name="cpf" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
+		                    <input type="text" class="form-control" id="cpf" placeholder="somente números" maxlength="11" required [(ngModel)]="model.cpf" name="cpf" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
 		                </div>
 		                <div class="form-group" >
 		                    <label>Telefone</label>
 		                    <span>
-		                    <input type="text" class="form-control" id="telefone" required [(ngModel)]="model.telefone" name="telefone" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
-		                </div>	               
+		                    <input type="text" class="form-control" id="telefone" placeholder="somente números" maxlength="11" required [(ngModel)]="model.telefone" name="telefone" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
+		                </div>
+		                <div class="form-group" >
+		                    <label>Estabelecimento</label>
+		                    <span>
+		                    <select type="text" class="form-control" id="estabelecimento" required [(ngModel)]="model.id_estabelecimento" name="estabelecimento" #estabelecimento="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                    	<option value="est.id_estabelecimento"  *ngFor="let est of estabelecimentos">{{est.unidade}}</option>
+		                    </select></span>
+		                </div>		               
 		                <button type="submit" class="btn btn-primary">Enviar</button>
 		                <a [routerLink]="['/colaborador/lista']"><button type="button" class="btn btn-primary">Cancelar</button></a>
 		            </form>	  
