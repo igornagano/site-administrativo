@@ -16,12 +16,7 @@
 		                <div class="form-group">
 		                    <label>Nome</label>
 		                    <input type="text" class="form-control" required [(ngModel)]="model['Usuarios']['nome']" name="nome"#nome="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
-		                </div>		                
-		                <div class="form-group" >
-		                    <label>Email</label>
-		                    <span>
-		                    <input type="text" class="form-control" id="email" required [(ngModel)]="model['Usuarios']['email']" name="email" #email="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
-		                </div>
+		                </div>	
 		                <div class="form-group">
 		                    <label>Senha</label>
 		                    <input type="password" name="senha" class="form-control" required [(ngModel)]="model['Usuarios']['senha']" #senha="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
@@ -30,11 +25,6 @@
 		                    <label>Confirmar senha</label>
 		                    <input type="password" name="confsenha" class="form-control" required [(ngModel)]="model.confsenha" #confsenha="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>-->	               
-		               <div class="form-group" >
-		                    <label>CPF</label>
-		                    <span>
-		                    <input type="text" class="form-control" id="cpf" maxlength="11" required [(ngModel)]="model['Usuarios']['cpf']" name="cpf" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
-		                </div>
 		                <div class="form-group" >
 		                    <label>Telefone</label>
 		                    <span>
@@ -44,7 +34,7 @@
 		                    <label>Estabelecimento</label>
 		                    <span>
 		                    <select type="text" class="form-control" id="estabelecimento" required [(ngModel)]="model.id_estabelecimento" name="estabelecimento" #estabelecimento="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
-		                    	<option value="est.id_estabelecimento"  *ngFor="let est of estabelecimentos">{{est.unidade}}</option>
+		                    	<option value="{{est.id_estabelecimento}}"  *ngFor="let est of estabelecimentos">{{est.unidade}}</option>
 		                    </select></span>
 		                </div>		     
 		                <button type="submit" class="btn btn-primary">Enviar</button>

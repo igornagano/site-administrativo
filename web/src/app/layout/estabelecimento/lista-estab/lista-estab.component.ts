@@ -13,7 +13,8 @@ import "rxjs/add/operator/map";
 export class ListaEstabComponent implements OnInit {
 
   model
-
+  empresa = localStorage.getItem('empresa');
+  proprietario = localStorage.getItem('proprietario');
   submitted = false;
 
   onSubmit(){
@@ -28,7 +29,7 @@ export class ListaEstabComponent implements OnInit {
   }
 
   ngOnInit() {
-  		this.model = this.estabelecimentoService.getAll().map(res => res);
+  		this.model = this.estabelecimentoService.getEmpresa(this.empresa).map(res => res);
   }
 
   print(){

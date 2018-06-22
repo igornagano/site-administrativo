@@ -25,6 +25,9 @@ export class ColabCadastroComponent implements OnInit {
  senhas = {
   'confsenha':""
  }
+ dados = {
+  'gestor':"N"
+ }
   submitted = false;
 
   onSubmit(){
@@ -40,7 +43,7 @@ export class ColabCadastroComponent implements OnInit {
           return false
         }
         if(confirm("Confirmar o Cadastro?")){
-          this.colaboradorService.setDados(this.model).subscribe((res) =>
+          this.colaboradorService.setDados(this.model, this.dados.gestor).subscribe((res) =>
           {
             alert("Cadastro realizado");
             this.router.navigate(["/colaborador/lista"]);

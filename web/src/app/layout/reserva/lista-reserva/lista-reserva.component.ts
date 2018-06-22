@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Reserva } from '../../model/reserva';
 import { ReservaService } from '../../service/reserva.service';
 import { ClienteService } from '../../service/cliente.service';
@@ -16,9 +16,10 @@ import { Pipe } from '@angular/core';
   styleUrls: ['./lista-reserva.component.scss'],
    animations: [routerTransition()]
 })
-export class ListaReservaComponent implements OnInit {
+export class ListaReservaComponent implements OnDestroy,OnInit {
   usuario = null;
   reservas = null;
+  interval
   estabelecimento = localStorage.getItem("estabelecimento");
   dados = {
     numero: ""
@@ -39,9 +40,14 @@ export class ListaReservaComponent implements OnInit {
      
         return res;
     });
-    var interval = setInterval( () => { this.intervalFunc(); },60000);
+    this.interval = setInterval( () => { this.intervalFunc(); },60000);
     
   }
+      ngOnDestroy() {
+        // Will clear when component is destroyed e.g. route is navigated away from.
+        if(this.interval)
+          clearInterval(this.interval);
+     }
   
   onSubmit(){
     

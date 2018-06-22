@@ -42,7 +42,15 @@
 		                    <label>Estabelecimento</label>
 		                    <span>
 		                    <select type="text" class="form-control" id="estabelecimento" required [(ngModel)]="model.id_estabelecimento" name="estabelecimento" #estabelecimento="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
-		                    	<option value="est.id_estabelecimento"  *ngFor="let est of estabelecimentos">{{est.unidade}}</option>
+		                    	<option value="{{est.id_estabelecimento}}"  *ngFor="let est of estabelecimentos">{{est.unidade}}</option>
+		                    </select></span>
+		                </div>
+		                <div class="form-group" *ngIf="proprietario=='S'">
+		                    <label>Gestor</label>
+		                    <span>
+		                    <select type="text" class="form-control" id="gestor" required [(ngModel)]="dados.gestor" name="gestor" #gestor="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                    	<option value="N">Não</option>
+		                    	<option value="S">Sim</option>
 		                    </select></span>
 		                </div>		               
 		                <button type="submit" class="btn btn-primary">Enviar</button>

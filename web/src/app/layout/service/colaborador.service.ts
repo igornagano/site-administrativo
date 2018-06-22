@@ -81,7 +81,7 @@ export class ColaboradorService {
             map(res=>res)
         )
  }    
- setDados(colaborador){
+ setDados(colaborador, gestor){
     this.colaborador['nome'] = colaborador.nome;
     this.colaborador['email'] = colaborador.email;
     this.colaborador['senha'] = colaborador.senha;
@@ -89,10 +89,20 @@ export class ColaboradorService {
     this.colaborador['telefone'] = colaborador.telefone;
     this.colaborador['id_empresa'] = colaborador['id_empresa'];
     this.colaborador['id_estabelecimento']= colaborador['id_estabelecimento'];
-    
+    this.colaborador['gestor']= gestor;
+
    return this.http.post(this.conf.url + "/colaborador",  this.colaborador)
         .pipe(
-            map(res=>res)
+            map(res=>{
+                if(gestor == "S"){
+                    var dados = {
+                        "id_colaborador":res['id_colaborador']
+                    }
+                    this.http.post(this.conf.url + "/gestor",dados).subscribe(resposta=>{})
+                }
+                
+                return res
+            })
         )
     }
 }
