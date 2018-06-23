@@ -16,7 +16,8 @@ export class EstabAlteraComponent implements OnInit {
 
   model = {}
   valores = {}
-  constructor(private estabelecimentoService: EstabelecimentoService, private colaboradorService: ColaboradorService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private estabelecimentoService: EstabelecimentoService, private colaboradorService: ColaboradorService, 
+    private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');

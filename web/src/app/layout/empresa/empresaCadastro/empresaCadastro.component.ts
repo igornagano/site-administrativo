@@ -16,6 +16,12 @@ export class EmpresaCadastroComponent implements OnInit {
   submitted = false;
 
   onSubmit(){
+
+    if (this.validador() == false){
+        return false
+      }
+
+
     if(confirm("Deseja registrar essa Empresa?")){
      
     this.empresaService.setDados(this.model).subscribe((res)=>{
@@ -35,18 +41,11 @@ export class EmpresaCadastroComponent implements OnInit {
               alert("Cadastrado com sucesso");
                this.router.navigate(["/empresa/lista"]);
           });
-      })
-
-      
+      })      
     }, error=>{
       alert("Ocorreu um erro");
     });
- 
     }
-    /*this.empresaService.setDados(this.model).subscribe((res)=>
-    {
-          alert("Cadastrado com Sucesso");
-    });*/
   }
 
   pegardados(){
@@ -57,6 +56,37 @@ export class EmpresaCadastroComponent implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+  validador(){
+    if (this.model.nome == "") {
+      alert("Preencha o campo Nome");
+      return false
+    }
+    if (this.model.nomeFantasia == "") {
+      alert("Preencha o campo Nome Fantasia");
+      return false
+    }
+    if (this.model.email == "") {
+      alert("Preencha o campo E-mail");
+      return false
+    }
+    if (this.model.cnpj == "") {
+      alert("Preencha o campo CNPJ");
+      return false
+    }
+    if (this.model.telefone == "") {
+      alert("Preencha o campo Telefone");
+      return false
+    }
+    if (this.model.nomeProprietario == "") {
+      alert("Preencha o campo Nome do Proprietario");
+      return false
+    }    
+    if (this.model.cpf == "") {
+      alert("Preencha o campo CPF");
+      return false
+    }
   }
 
   print(){

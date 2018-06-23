@@ -22,6 +22,11 @@ export class EstabCadastroComponent implements OnInit {
 
 
   onSubmit(){
+
+    if(this.validador() == false){
+        return false
+      }
+
      if(confirm("Confirmar o Cadastro?")){
       this.estabelecimentoService.setDados(this.model).subscribe((res) =>
       {
@@ -45,6 +50,33 @@ export class EstabCadastroComponent implements OnInit {
   ngOnInit() {   
   }
 
+  validador(){
+    if (this.model.unidade == "") {
+      alert("Preencha o campo Unidade");
+      return false
+    }
+    if (this.model.endereco == "") {
+      alert("Preencha o campo Endereço");
+      return false
+    }
+    if (this.model.horario_inicio == "") {
+      alert("Preencha o campo Horario de Inicio");
+      return false
+    }
+    if (this.model.horario_fim == "") {
+      alert("Preencha o campo Harario de Fechamento");
+      return false
+    }
+    /*if (this.model.cobrar == "") {
+      alert("Preencha o campo Cobrar a cada");
+      return false
+    }    
+    if (this.model.valor_hora == "") {
+      alert("Preencha o campo Valor da Hora");
+      return false
+    }*/
+  }
+  
   print(){
     console.log(JSON.stringify(this.model));
   }

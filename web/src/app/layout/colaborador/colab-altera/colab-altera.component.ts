@@ -19,9 +19,10 @@ export class ColabAlteraComponent implements OnInit {
  empresa = localStorage.getItem('empresa');
  proprietario = localStorage.getItem('proprietario');
  estabelecimentos
-  model = {}
+ model = {}
   
-  constructor(private colaboradorService: ColaboradorService, private estabelecimentoService: EstabelecimentoService,private route: ActivatedRoute, private router: Router) { }
+  constructor(private colaboradorService: ColaboradorService, private estabelecimentoService: EstabelecimentoService,
+    private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
      if(this.gestor == undefined){
@@ -38,7 +39,7 @@ export class ColabAlteraComponent implements OnInit {
                         this.model = data;
                         if(this.model['Gestor']['proprietario'] == "S" && id != this.colaborador){
                           alert("Você não tem permissão para alterar esse usuário");
-                           this.router.navigate(["/colaborador/lista"]); 
+                           this.router.navigate(["/reservas/lista"]); 
                         }
                       })
    }
@@ -53,7 +54,7 @@ export class ColabAlteraComponent implements OnInit {
      this.colaboradorService.putDados(this.model).subscribe(
                    (data)=>{
                         alert("Dados alterados com sucesso");
-                        this.router.navigate(["/colaborador/lista"]); 
+                        this.router.navigate(["/reservas/lista"]); 
                     }, error=>{
                         alert("Ocorreu um erro")
                     });
@@ -62,13 +63,13 @@ export class ColabAlteraComponent implements OnInit {
 
   deletar(){
     if(confirm("Deseja deletar esse colaborador?")){
-      
-      this.colaboradorService.deletar(this.model['id_colaborador']).subscribe(res=>{
-                        alert("Colaborador deletado com sucesso");
-                        this.router.navigate(["/colaborador/lista"]); 
-      },error=>{
-        alert("Ocorreu um erro")
-      })
+      this.colaboradorService.deletar(this.model['id_colaborador']).subscribe(res=>
+      {
+         alert("Colaborador excluido");
+         this.router.navigate(["/reservas/lista"]); 
+      },error => {
+        alert("Ocorreu um erro");
+      });
     }
   }
 }

@@ -31,9 +31,7 @@ export class ColabCadastroComponent implements OnInit {
   submitted = false;
 
   onSubmit(){
-    //this.colaboradorService.setDados(this.model);
 
-    //if( #senha] === #confsenha){
       if (this.validador() == false){
         return false
       }
@@ -53,10 +51,6 @@ export class ColabCadastroComponent implements OnInit {
           })
         }
     }
-    //else{
-      //   alert("Senhas não são iguais")
-    //}
-  
 
   pegardados(){
     return JSON.stringify(this.model);
@@ -75,7 +69,34 @@ export class ColabCadastroComponent implements OnInit {
       alert("Preencha o campo Nome");
       return false
     }
-    
+    if (this.model.email == "") {
+      alert("Preencha o campo e-mail");
+      return false
+    }
+    if (this.model.senha == "") {
+      alert("Preencha o campo Senha");
+      return false
+    }
+    if (this.senhas.confsenha == "") {
+      alert("Preencha o campo Confirmar Senha");
+      return false
+    }
+    if (this.model.cpf == "") {
+      alert("Preencha o campo CPF");
+      return false
+    }    
+    if (this.model.telefone == "") {
+      alert("Preencha o campo Telefone");
+      return false
+    }
+    if (this.model.id_estabelecimento == "") {
+      alert("Preencha o campo Estabelecimento");
+      return false
+    }
+    if (this.dados.gestor == "") {
+      alert("Preencha o campo CPF");
+      return false
+    }
   }
   print(){
     console.log(JSON.stringify(this.model));

@@ -105,8 +105,8 @@ export class ColaboradorService {
             })
         )
     }
- deletar(colaborador) {
-    return this.http.delete(this.conf.url + "/colaborador/"+colaborador)
+ deletar(id) {
+    return this.http.delete(this.conf.url + "/colaborador/"+id)
         .pipe(
             map(res=>res) 
         )

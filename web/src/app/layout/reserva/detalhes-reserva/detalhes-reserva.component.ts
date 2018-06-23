@@ -80,6 +80,7 @@ export class DetalhesReservaComponent implements OnInit {
       'situacao': 'E',
       'hora_entrada': hora
     }
+     if(confirm("Confirmar entrada?")){
     this.reservaService.putDados(dados).subscribe((res) =>
     {
       alert("Reserva "+ this.id+" está Em Andamento");
@@ -87,6 +88,7 @@ export class DetalhesReservaComponent implements OnInit {
     }, error => {
         alert("Ocorreu um erro! Atualize a página.");
     })
+    }
   }
   efetuarSaida(){
     var hora = new Date();

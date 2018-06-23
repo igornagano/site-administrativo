@@ -23,6 +23,10 @@ export class VagaCadastroComponent implements OnInit {
 
   onSubmit(){
 
+    if (this.validador() == false){
+        return false
+      }
+
     if(confirm("Confirmar o Cadastro?")){
       this.vagaService.setDados(this.model).subscribe((res)=>
       {
@@ -47,6 +51,21 @@ export class VagaCadastroComponent implements OnInit {
    }
 
   ngOnInit() {   
+  }
+
+  validador(){
+    if (this.model.setor == "") {
+      alert("Preencha o campo Setor");
+      return false
+    }
+    if (this.model.numero == "") {
+      alert("Preencha o campo Número da Vaga");
+      return false
+    }
+    if (this.model.tipo == "") {
+      alert("Preencha o campo Tipo");
+      return false
+    }
   }
 
   print(){

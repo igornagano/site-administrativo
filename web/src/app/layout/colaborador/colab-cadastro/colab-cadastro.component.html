@@ -5,6 +5,17 @@
     	<div class="container">  	
     		<section id="latdir">
         		<div class="col-sm-8 col-sm-offset-2">
+
+        			<script type="text/javascript">
+        			function mcpf(v) {
+					    v = v.replace(/\D/g, "");             //Remove tudo o que não é dígito
+					    v = v.replace(/^(\d{3})(\d)/g, "$1.$2");//Coloca . após 3 numeros
+					    v = v.replace(/^(\d{3}).(\d{3})(\d)/g, "$1.$2.$3"); // colca o segundo . após 6 numeros
+					    v = v.replace(/^(\d{3}).(\d{3}).(\d{3})(\d{1,2})/g, "$1.$2.$3-$4");    //Coloca hífen após 9 numeros
+					    return v;
+					}
+        			</script>
+        			
             
 		            <form (ngSubmit)='onSubmit()' #formulario> 
 
@@ -31,7 +42,7 @@
 		               <div class="form-group" >
 		                    <label>CPF</label>
 		                    <span>
-		                    <input type="text" class="form-control" id="cpf" placeholder="somente números" maxlength="11" required [(ngModel)]="model.cpf" name="cpf" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
+		                    <input type="numero" class="form-control" id="cpf" placeholder="somente números" maxlength="14" required [(ngModel)]="model.cpf" name="cpf" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
 		                </div>
 		                <div class="form-group" >
 		                    <label>Telefone</label>
