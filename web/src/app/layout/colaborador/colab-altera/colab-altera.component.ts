@@ -34,8 +34,12 @@ export class ColabAlteraComponent implements OnInit {
     var id = this.route.snapshot.paramMap.get('id');
     this.colaboradorService.getDados(id).subscribe(
                       data => {
-                         console.log(data);
-                        this.model = data
+                        console.log(data);
+                        this.model = data;
+                        if(this.model['Gestor']['proprietario'] == "S" && id != this.colaborador){
+                          alert("Você não tem permissão para alterar esse usuário");
+                           this.router.navigate(["/colaborador/lista"]); 
+                        }
                       })
    }
     if(this.proprietario == "S")
@@ -53,6 +57,18 @@ export class ColabAlteraComponent implements OnInit {
                     }, error=>{
                         alert("Ocorreu um erro")
                     });
+    }
+  }
+
+  deletar(){
+    if(confirm("Deseja deletar esse colaborador?")){
+      
+      this.colaboradorService.deletar(this.model['id_colaborador']).subscribe(res=>{
+                        alert("Colaborador deletado com sucesso");
+                        this.router.navigate(["/colaborador/lista"]); 
+      },error=>{
+        alert("Ocorreu um erro")
+      })
     }
   }
 }

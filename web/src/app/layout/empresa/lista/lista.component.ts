@@ -12,6 +12,9 @@ import "rxjs/add/operator/map";
 })
 export class ListaComponent implements OnInit {
   model
+  dados
+  empresa = localStorage.getItem('empresa');
+  colaborador = localStorage.getItem('colaborador');
 
   submitted = false;
 
@@ -27,8 +30,21 @@ export class ListaComponent implements OnInit {
   }
 
   ngOnInit() {
-  		this.model = this.empresaService.getAll().map(res => res);
-  }
+      if(this.colaborador == "1"){
+
+       this.model = this.empresaService.getAll().map(res => res);
+      }else{
+        this.empresaService.getDados(this.empresa).subscribe(res=>{
+           
+           this.dados = {
+            id_empresa: res['id_empresa'],
+            razao_social: res['razao_social']
+          };
+
+        });
+      }
+    }
+  
 
   print(){
     console.log(JSON.stringify(this.model));

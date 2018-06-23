@@ -30,7 +30,7 @@ export class ListaColabComponent implements OnInit {
   }
 
   ngOnInit() {
-  		this.model = this.colaboradorService.getAll().map(res => res);
+  		this.model = this.colaboradorService.getEmpresa(this.empresa).map(res => res);
   }
 
   print(){

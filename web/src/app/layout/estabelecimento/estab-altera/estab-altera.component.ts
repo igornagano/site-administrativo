@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Estabelecimento } from '../../model/estabelecimento';
 import { EstabelecimentoService } from '../../service/estabelecimento.service';
+import { ColaboradorService } from '../../service/colaborador.service';
 import { routerTransition } from '../../../router.animations';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Router } from '@angular/router';
@@ -15,7 +16,7 @@ export class EstabAlteraComponent implements OnInit {
 
   model = {}
   valores = {}
-  constructor(private estabelecimentoService: EstabelecimentoService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private estabelecimentoService: EstabelecimentoService, private colaboradorService: ColaboradorService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
@@ -57,6 +58,29 @@ export class EstabAlteraComponent implements OnInit {
     }, error=>{
                 alert("Ocorreu um erro")
     });
+    }
+  }
+  deletar(){
+    if(confirm("Deseja deletar esse Estabelecimento?")){
+      this.estabelecimentoService.deletar(this.model['id_estabelecimento']).subscribe(res=>{
+          this.colaboradorService.getEstabelecimento(this.model['id_estabelecimento']).subscribe(colaboradores=>
+          {
+            for(var colab in colaboradores){
+               this.colaboradorService.deletar(colaboradores[colab]['id_colaborador']).subscribe(res=>{
+                
+                },error=>{
+                  
+                })
+            }
+          }, error=>{
+
+          })
+
+          alert("Estabelecimento deletado com sucesso");
+            this.router.navigate(["/estabelecimento/lista"]);
+      }, error=>{
+        alert("Ocorreu um erro")
+      })
     }
   }
 }

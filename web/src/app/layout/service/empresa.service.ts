@@ -33,6 +33,12 @@ export class EmpresaService {
             map(res=>res)
         )
  } 
+ deletar(id) {
+    return this.http.delete(this.conf.url + "/empresa/"+id)
+      .pipe(
+            map(res=>res)
+        )
+ } 
  getAll() {
     return this.http.get(this.conf.url + "/empresa")
     	.pipe(

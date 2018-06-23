@@ -37,6 +37,13 @@ export class EstabelecimentoService {
         )
  } 
 
+ deletar(id) {
+    return this.http.delete(this.conf.url + "/estabelecimento/"+id)
+        .pipe(
+            map(res=>res)
+        )
+ } 
+
 
  getAll() {
     return this.http.get(this.conf.url + "/estabelecimento")
