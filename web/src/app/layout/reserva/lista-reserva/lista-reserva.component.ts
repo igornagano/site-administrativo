@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Reserva } from '../../model/reserva';
 import { ReservaService } from '../../service/reserva.service';
-import { ClienteService } from '../../service/cliente.service';
+import { SensorService } from '../../service/sensor.service';
+import { VagaService } from '../../service/vaga.service';
 import { routerTransition } from '../../../router.animations';
 import "rxjs/add/operator/map"; 
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -19,7 +20,10 @@ import { Pipe } from '@angular/core';
 export class ListaReservaComponent implements OnDestroy,OnInit {
   usuario = null;
   reservas = null;
+  sensores = 0;
+
   interval
+  numero_reservas = 0;
   estabelecimento = localStorage.getItem("estabelecimento");
   dados = {
     numero: ""
@@ -30,16 +34,32 @@ export class ListaReservaComponent implements OnDestroy,OnInit {
     'C': "Cancelado",
     'F': "Finalizado"
   }
-  constructor(private reservaService: ReservaService, private router: Router) {
+  constructor(private reservaService: ReservaService, private sensorService: SensorService, private vagaService: VagaService,private router: Router) {
 
   }
 
   ngOnInit() {
-    
+    this.vagaService.getestabelecimento(this.estabelecimento).subscribe((vagas)=>{
+      var numero = 0;
+      console.log(vagas);
+      for(var i in vagas){
+        if(vagas[i]['Sensor']['situacao'] == "L"){
+          numero += 1;
+        }
+      }
+      this.sensores = numero;
+    })
     this.reservas = this.reservaService.getReservasHoje(this.estabelecimento).map((res) =>{
-     
+        var numero = 0;
+        for(var i in res){
+          if(res[i]['situacao'] == "A"){
+            numero += 1;
+          }
+        }
+        this.numero_reservas = numero;
         return res;
     });
+    
     this.interval = setInterval( () => { this.intervalFunc(); },60000);
     
   }
@@ -71,11 +91,26 @@ export class ListaReservaComponent implements OnDestroy,OnInit {
 
 
   intervalFunc() {
-
-    var agora = new Date();
+       this.vagaService.getestabelecimento(this.estabelecimento).subscribe((vagas)=>{
+      var numero = 0;
+      for(var i in vagas){
+        if(vagas[i]['Sensor']['situacao'] == "L"){
+          numero += 1;
+        }
+      }
+      this.sensores = numero;
+    })
       this.reservas = this.reservaService.getReservasHoje(this.estabelecimento).map((res) =>{  
+         var numero = 0;
+        for(var i in res){
+          if(res[i]['situacao'] == "A"){
+            numero += 1;
+          }
+        }
+        this.numero_reservas = numero;
         return res;
     });
+
   }
   
   
