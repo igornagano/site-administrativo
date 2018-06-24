@@ -41,7 +41,7 @@
 
 		                   <div class="form-group">
 		                    <label>Valor da hora</label>
-		                    <input type="text" name="valor_hora" class="form-control" required [(ngModel)]="model.valor_hora" #valor_hora="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                    <input type="text" name="valor_hora" (input)= "formatPreco()" class="form-control" maxlength="6" required [(ngModel)]="model.valor_hora" #valor_hora="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
 		                <button type="submit" class="btn btn-primary">Enviar</button>
 		                 <a [routerLink]="['/estabelecimento/lista']"><button type="button" class="btn btn-primary">Cancelar</button></a>

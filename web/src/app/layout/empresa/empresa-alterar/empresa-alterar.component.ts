@@ -29,25 +29,25 @@ export class EmpresaAlterarComponent implements OnInit {
 
   onSubmit(){
 
+    if (this.validador() == false){
+        return false
+      }
+
     if(confirm("Confirmar a Alteração?")){
     this.empresaService.putDados(this.model).subscribe((data)=>{
-                    	
                     		alert("Dados alterados com sucesso");
                         this.router.navigate(["/empresa/lista"]);
-                    	
                       }, error=>{
-                                              alert("Ocorreu um erro")
-
+                           alert("Ocorreu um erro")
                       });;
-        }
-      }
+              }
+          }
 
   deletar(){
     if(confirm("Deseja deletar essa Empresa?")){
       this.estabelecimentoService.getEmpresa(this.model['id_empresa']).subscribe(res=>{
         for(var estabelecimento in res){
             this.estabelecimentoService.deletar(res[estabelecimento]['id_estabelecimento']).subscribe(estab_colab=>{
-              
             })
         }
           this.empresaService.deletar(this.model['id_empresa']).subscribe(res=>{
@@ -70,6 +70,34 @@ export class EmpresaAlterarComponent implements OnInit {
           })
           })
     }
+  }
+
+  validador(){
+    if (this.model.nome == "") {
+      alert("Preencha o campo Nome");
+      return false
+    }
+    if (this.model.nomeFantasia == "") {
+      alert("Preencha o campo Nome Fantasia");
+      return false
+    }
+    if (this.model.cnpj == "") {
+      alert("Preencha o campo CNPJ");
+      return false
+    }
+  }
+
+  formatCnpj(){
+    this.model.cnpj = this.mcnpj(this.model.cnpj);
+  }
+
+  mcnpj(v) {
+    v = v.replace(/\D/g, "");             //Remove tudo o que não é dígito
+    v = v.replace(/^(\d{2})(\d)/g, "$1.$2");//Coloca . após 3 numeros
+    v = v.replace(/^(\d{2}).(\d{3})(\d)/g, "$1.$2.$3"); // colca o segundo . após 6 numeros
+    v = v.replace(/^(\d{2}).(\d{3}).(\d{3})(\d)/g, "$1.$2.$3/$4");    //Coloca hífen após 9 numeros
+    v = v.replace(/^(\d{2}).(\d{3}).(\d{3})\/(\d{4})(\d{1,2})/g, "$1.$2.$3/$4-$5");
+    return v;
   }
 
 }

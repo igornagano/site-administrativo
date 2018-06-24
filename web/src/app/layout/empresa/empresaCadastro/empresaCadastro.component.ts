@@ -89,6 +89,45 @@ export class EmpresaCadastroComponent implements OnInit {
     }
   }
 
+  formatCpf(){
+    this.model.cpf = this.mcpf(this.model.cpf);
+  }
+
+  formatTel(){
+    this.model.telefone = this.mtel(this.model.telefone);
+  }
+
+  formatCnpj(){
+    this.model.cnpj = this.mcnpj(this.model.cnpj);
+  }
+
+
+  mcpf(v) {
+      v = v.replace(/\D/g, "");             //Remove tudo o que não é dígito
+      v = v.replace(/^(\d{3})(\d)/g, "$1.$2");//Coloca . após 3 numeros
+      v = v.replace(/^(\d{3}).(\d{3})(\d)/g, "$1.$2.$3"); // colca o segundo . após 6 numeros
+      v = v.replace(/^(\d{3}).(\d{3}).(\d{3})(\d{1,2})/g, "$1.$2.$3-$4");    //Coloca hífen após 9 numeros
+     return v;
+   }
+
+  mtel(v){
+     v=v.replace(/\D/g,"");             //Remove tudo o que não é dígito
+     v=v.replace(/^(\d{2})(\d{5})(\d{4})/g,"($1) $2-$3");
+     v=v.replace(/^(\d{2})(\d{4})(\d)/g,"($1) $2-$3");
+     v=v.replace(/^(\d{2})(\d{1})/g,"($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+   //Coloca hífen entre o quarto e o quinto dígitos
+    return v;
+  }
+
+  mcnpj(v) {
+    v = v.replace(/\D/g, "");             //Remove tudo o que não é dígito
+    v = v.replace(/^(\d{2})(\d)/g, "$1.$2");//Coloca . após 3 numeros
+    v = v.replace(/^(\d{2}).(\d{3})(\d)/g, "$1.$2.$3"); // colca o segundo . após 6 numeros
+    v = v.replace(/^(\d{2}).(\d{3}).(\d{3})(\d)/g, "$1.$2.$3/$4");    //Coloca hífen após 9 numeros
+    v = v.replace(/^(\d{2}).(\d{3}).(\d{3})\/(\d{4})(\d{1,2})/g, "$1.$2.$3/$4-$5");
+    return v;
+  }
+
   print(){
     console.log(JSON.stringify(this.model));
   }

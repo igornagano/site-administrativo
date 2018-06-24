@@ -42,12 +42,12 @@
 		               <div class="form-group" >
 		                    <label>CPF</label>
 		                    <span>
-		                    <input type="numero" class="form-control" id="cpf" placeholder="somente números" maxlength="14" required [(ngModel)]="model.cpf" name="cpf" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
+		                    <input type="numero" class="form-control" id="cpf" placeholder="somente números" maxlength="14" required [(ngModel)]="model.cpf" name="cpf" (input)="formatCpf()" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
 		                </div>
 		                <div class="form-group" >
 		                    <label>Telefone</label>
 		                    <span>
-		                    <input type="text" class="form-control" id="telefone" placeholder="somente números" maxlength="11" required [(ngModel)]="model.telefone" name="telefone" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
+		                    <input type="text" class="form-control" id="telefone" placeholder="somente números" maxlength="15" required [(ngModel)]="model.telefone" name="telefone" (input)="formatTel()" #telefone="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
 		                </div>
 		                <div class="form-group" >
 		                    <label>Estabelecimento</label>

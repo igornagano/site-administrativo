@@ -46,7 +46,7 @@ export class ColabCadastroComponent implements OnInit {
             alert("Cadastro realizado");
             this.router.navigate(["/colaborador/lista"]);
           }, error => {
-              alert("Ocorreu um erro!");
+              alert("Ocorreu um erro cadastro!");
               //this.router.navigate(["/estabelecimento/lista"]);
           })
         }
@@ -56,7 +56,8 @@ export class ColabCadastroComponent implements OnInit {
     return JSON.stringify(this.model);
   }
 
-  constructor(private colaboradorService: ColaboradorService,private estabelecimentoService: EstabelecimentoService, private route: ActivatedRoute, private router: Router) {
+  constructor(private colaboradorService: ColaboradorService,private estabelecimentoService: EstabelecimentoService,
+   private route: ActivatedRoute, private router: Router) {
    }
 
   ngOnInit() {   
@@ -98,6 +99,32 @@ export class ColabCadastroComponent implements OnInit {
       return false
     }
   }
+
+  formatCpf(){
+    this.model.cpf = this.mcpf(this.model.cpf);
+  }
+
+  formatTel(){
+    this.model.telefone = this.mtel(this.model.telefone);
+  }
+
+  mcpf(v) {
+      v = v.replace(/\D/g, "");             //Remove tudo o que não é dígito
+      v = v.replace(/^(\d{3})(\d)/g, "$1.$2");//Coloca . após 3 numeros
+      v = v.replace(/^(\d{3}).(\d{3})(\d)/g, "$1.$2.$3"); // colca o segundo . após 6 numeros
+      v = v.replace(/^(\d{3}).(\d{3}).(\d{3})(\d{1,2})/g, "$1.$2.$3-$4");    //Coloca hífen após 9 numeros
+     return v;
+   }
+
+  mtel(v){
+     v=v.replace(/\D/g,"");             //Remove tudo o que não é dígito
+     v=v.replace(/^(\d{2})(\d{5})(\d{4})/g,"($1) $2-$3");
+     v=v.replace(/^(\d{2})(\d{4})(\d)/g,"($1) $2-$3");
+     v=v.replace(/^(\d{2})(\d{1})/g,"($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+   //Coloca hífen entre o quarto e o quinto dígitos
+    return v;
+  }
+
   print(){
     console.log(JSON.stringify(this.model));
   }

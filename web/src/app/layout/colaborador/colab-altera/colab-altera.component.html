@@ -10,7 +10,7 @@
 		        	<form (ngSubmit)='onSubmit()' #formulario> 
 
 		            	<div>
-		            		<h1>Alteração de Colaborador</h1>
+		            		<h1>Alteração do Colaborador</h1>
 		            	</div>
 		               
 		                <div class="form-group">
@@ -21,16 +21,15 @@
 		                    <label>Senha</label>
 		                    <input type="password" name="senha" class="form-control" required [(ngModel)]="model['Usuarios']['senha']" #senha="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
-		                <!--<div class="form-group">
+		                <div class="form-group">
 		                    <label>Confirmar senha</label>
-		                    <input type="password" name="confsenha" class="form-control" required [(ngModel)]="model.confsenha" #confsenha="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
-		                </div>-->	               
-		                <div class="form-group" >
+		                    <input type="password" name="confsenha" class="form-control" required [(ngModel)]="model['Usuarios']['confsenha']" #confsenha="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                </div>               
+		                <div class="form-group">
 		                    <label>Telefone</label>
-		                    <span>
-		                    <input type="text" class="form-control" id="telefone" maxlength="11" required [(ngModel)]="model['Usuarios']['telefone']" name="telefone" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
+		                    <span><input type="numero" class="form-control" id="telefone" (input)="formatTel()" maxlength="15" required [(ngModel)]="model['Usuarios']['telefone']" name="telefone" #telefone="ngModel" [ngModelOptions]="{ updateOn: 'change'}"></span>
 		                </div>
-		               		                <div class="form-group" >
+		                <div class="form-group" >
 		                    <label>Estabelecimento</label>
 		                    <span>
 		                    <select type="text" class="form-control" id="estabelecimento" required [(ngModel)]="model.id_estabelecimento" name="estabelecimento" #estabelecimento="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
@@ -39,7 +38,7 @@
 		                </div>		     
 		                <button type="submit" class="btn btn-primary">Enviar</button>
 		                <button type="button" class="btn btn-primary" (click)=" deletar()">Deletar</button>
-		                <a [routerLink]="['/colaborador/lista']"><button type="button" class="btn btn-primary">Cancelar</button></a>
+		                <a [routerLink]="['/colaborador/dados']"><button type="button" class="btn btn-primary">Cancelar</button></a>
 		            </form>	  
 		         </div>  
         	</section>      

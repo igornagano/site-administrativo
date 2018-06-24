@@ -15,7 +15,7 @@
 		            <form (ngSubmit)='onSubmit()' #formulario> 
 
 		            	<div>
-		            		<h1>Alteração de Empresas</h1>
+		            		<h1>Alteração da Empresa</h1>
 		            	</div>
 		               
 		                <div class="form-group" >
@@ -31,7 +31,7 @@
 
 		                <div class="form-group">
 		                    <label>CNPJ</label>
-		                    <input type="text" name="cnpj" class="form-control" ng-maxlength="13" required [(ngModel)]="model.cnpj" #cnpj="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                    <input type="text" name="cnpj" class="form-control" (input)= "formatCnpj()" maxlength="18" required [(ngModel)]="model.cnpj" #cnpj="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
 
 		                <!-- SUBMIT BUTTON -->

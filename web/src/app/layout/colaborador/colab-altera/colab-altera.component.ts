@@ -20,9 +20,14 @@ export class ColabAlteraComponent implements OnInit {
  proprietario = localStorage.getItem('proprietario');
  estabelecimentos
  model = {}
+
+ senhas = {
+  'confsenha':""
+ }
   
   constructor(private colaboradorService: ColaboradorService, private estabelecimentoService: EstabelecimentoService,
-    private route: ActivatedRoute, private router: Router) { }
+    private route: ActivatedRoute, private router: Router){ 
+  }
 
   ngOnInit() {
      if(this.gestor == undefined){
@@ -50,13 +55,19 @@ export class ColabAlteraComponent implements OnInit {
 
   onSubmit(){
 
+    if(this.model['Usuarios']['senha'] != this.model['Usuarios']['confsenha']){
+          alert("Senhas diferentes");
+          return false
+        }
+
+
     if(confirm("Confirmar Alteração?")){
      this.colaboradorService.putDados(this.model).subscribe(
                    (data)=>{
                         alert("Dados alterados com sucesso");
-                        this.router.navigate(["/reservas/lista"]); 
+                        this.router.navigate(["/colaborador/dados"]); 
                     }, error=>{
-                        alert("Ocorreu um erro")
+                        alert("Ocorreu um erro alteração")
                     });
     }
   }
@@ -68,8 +79,22 @@ export class ColabAlteraComponent implements OnInit {
          alert("Colaborador excluido");
          this.router.navigate(["/reservas/lista"]); 
       },error => {
-        alert("Ocorreu um erro");
+        alert("Ocorreu um erro deletar");
       });
     }
   }
+
+  formatTel(){
+    this.model['Usuarios']['telefone'] = this.mtel(this.model['Usuarios']['telefone']);
+  }
+
+  mtel(v){
+     v=v.replace(/\D/g,"");             //Remove tudo o que não é dígito
+     v=v.replace(/^(\d{2})(\d{5})(\d{4})/g,"($1) $2-$3");
+     v=v.replace(/^(\d{2})(\d{4})(\d)/g,"($1) $2-$3");
+     v=v.replace(/^(\d{2})(\d{1})/g,"($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+   //Coloca hífen entre o quarto e o quinto dígitos
+    return v;
+  }
 }
+

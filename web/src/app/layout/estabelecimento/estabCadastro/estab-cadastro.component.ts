@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 export class EstabCadastroComponent implements OnInit {
 
   empresa = localStorage.getItem('empresa');
+  valores = localStorage.getItem('valor');
   model = new Estabelecimento('','',this.empresa,'','');
 
   submitted = false;
@@ -33,7 +34,7 @@ export class EstabCadastroComponent implements OnInit {
         alert("Cadastro realizado");
         this.router.navigate(["/estabelecimento/lista"]);
       }, error => {
-          alert("Ocorreu um erro!");
+          alert("Ocorreu um erro cadastro!");
           //this.router.navigate(["/estabelecimento/lista"]);
       })
     }
@@ -44,7 +45,8 @@ export class EstabCadastroComponent implements OnInit {
     return JSON.stringify(this.model);
   }
 
-  constructor(private estabelecimentoService: EstabelecimentoService, private route: ActivatedRoute,  private router: Router) {
+  constructor(private estabelecimentoService: EstabelecimentoService, private route: ActivatedRoute,  
+    private router: Router) {
    }
 
   ngOnInit() {   
@@ -67,14 +69,24 @@ export class EstabCadastroComponent implements OnInit {
       alert("Preencha o campo Harario de Fechamento");
       return false
     }
-    /*if (this.model.cobrar == "") {
+    if (this.model.cobrar == "") {
       alert("Preencha o campo Cobrar a cada");
       return false
     }    
     if (this.model.valor_hora == "") {
       alert("Preencha o campo Valor da Hora");
       return false
-    }*/
+    }
+  }
+
+  formatPreco(){
+    this.model.valor_hora = this.mmoney(this.model.valor_hora);
+  }
+
+  mmoney(v){
+    v=v.replace(/\D/g,"");             //Remove tudo o que não é dígito
+    v=v.replace(/^(\d+)(\d{2})/g,"$1,$2");
+    return v;
   }
   
   print(){

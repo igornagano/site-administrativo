@@ -15,7 +15,8 @@
 					<div class="card-body" id="corpo"  *ngFor="let empresa of model  | async">
 						<div>
 							<div align="right"><a [routerLink]="['/empresa/alterar/', empresa.id_empresa]">Editar</a></div>
-							<h4>{{ empresa.razao_social }}</h4>
+							<h4>{{ empresa.razao_social }}</h4><br>
+							<h6>CNPJ: {{empresa.cnpj}}</h6>
 	  					</div>	
 					</div>
 				</div>

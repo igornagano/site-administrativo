@@ -48,6 +48,10 @@ export class EstabAlteraComponent implements OnInit {
  }
   onSubmit(){
 
+    if(this.validador() == false){
+        return false
+      }
+
         if(confirm("Confirmar a Alteração?")){
         this.estabelecimentoService.putDados(this.model).subscribe(data=>{
         this.estabelecimentoService.putPreco(this.valores).subscribe(valor=>{
@@ -83,5 +87,43 @@ export class EstabAlteraComponent implements OnInit {
         alert("Ocorreu um erro")
       })
     }
+  }
+
+  validador(){
+    if (this.model.unidade == "") {
+      alert("Preencha o campo Unidade");
+      return false
+    }
+    if (this.model.endereco == "") {
+      alert("Preencha o campo Endereço");
+      return false
+    }
+    if (this.model.horario_inicio == "") {
+      alert("Preencha o campo Horario de Inicio");
+      return false
+    }
+    if (this.model.horario_fim == "") {
+      alert("Preencha o campo Harario de Fechamento");
+      return false
+    }
+    if (this.model.cobrar == "") {
+      alert("Preencha o campo Cobrar a cada");
+      return false
+    }    
+    if (this.model.valor_hora == "") {
+      alert("Preencha o campo Valor da Hora");
+      return false
+    }
+  }
+
+
+  formatPreco(){
+    this.valores.valor = this.mmoney(this.valores.valor);
+  }
+
+ mmoney(v){
+    v=v.replace(/\D/g,"");             //Remove tudo o que não é dígito
+    v=v.replace(/^(\d+)(\d{2})/g,"$1,$2");
+    return v;
   }
 }

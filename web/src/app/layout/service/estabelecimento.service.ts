@@ -20,7 +20,7 @@ export class EstabelecimentoService {
 		return Observable.throw(error || 'backend server error');
 	}
 
-  constructor(private http: HttpClient, private conf: Conf) { 
+constructor(private http: HttpClient, private conf: Conf) { 
 
   }
 
@@ -35,31 +35,33 @@ export class EstabelecimentoService {
         .pipe(
             map(res=>res)
         )
- } 
-
- deletar(id) {
-    return this.http.delete(this.conf.url + "/estabelecimento/"+id)
-        .pipe(
-            map(res=>res)
-        )
- } 
-
+    } 
 
  getAll() {
     return this.http.get(this.conf.url + "/estabelecimento")
     	.pipe(
             map(res=>res)
         )
- } 
+    } 
 
- putDados(estabelecimento){
- 	this.estabelecimento = estabelecimento;
- 	return this.http.put(this.conf.url + "/estabelecimento/"+this.estabelecimento['id_estabelecimento'], 
-        this.estabelecimento,httpOptions)
+ getPreco(estabelecimento){
+        return this.http.get(this.conf.url + "/valores/estabelecimento/"+
+            estabelecimento)
+        .pipe(
+            map(res=>{
+                return res
+            })
+        )
+    }
+
+    deletar(id) {
+    return this.http.delete(this.conf.url + "/estabelecimento/"+id)
         .pipe(
             map(res=>res)
         )
- }    
+    } 
+
+    
  setDados(estabelecimento){
  	this.estabelecimento ={
         'unidade': estabelecimento['unidade'],
@@ -89,19 +91,19 @@ export class EstabelecimentoService {
             )
         }
 	
-getPreco(estabelecimento){
-        return this.http.get(this.conf.url + "/valores/estabelecimento/"+
-            estabelecimento)
+   putDados(estabelecimento){
+    this.estabelecimento = estabelecimento;
+    return this.http.put(this.conf.url + "/estabelecimento/"+this.estabelecimento['id_estabelecimento'], 
+        this.estabelecimento,httpOptions)
         .pipe(
-            map(res=>{
-                return res
-            })
+            map(res=>res)
         )
-    }   
-putPreco(valor){
+    } 
+
+    putPreco(valor){
      var hora = valor['hora'].split(":");
      var tempo = parseInt(hora[0])*60 + parseInt(hora[1]);
-      var dados = {
+     var dados = {
                         "id_estabelecimento":valor['id_estabelecimento'],
                         "valor":valor['valor'].replace(",","."),
                         "hora": tempo

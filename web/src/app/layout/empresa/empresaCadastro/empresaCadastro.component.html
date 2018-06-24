@@ -14,16 +14,11 @@
             
 		            <!-- passa a variável se nosso formulário é válida ou inválida -->
 		            <!-- novalidate isso vai evitar a validação padrão do HTML5, já que vamos fazer isso usando o Angular -->
-		            <script>
-		            jQuery(function($){
-					   $("#cpf").mask("999.999.999-99");
-					});
-					</script>
 
 		            <form (ngSubmit)='onSubmit()' #formulario> 
 
 		            	<div>
-		            		<h1>Cadastro de Empresas</h1>
+		            		<h1>Cadastro da Empresa</h1>
 		            	</div>
 		               
 		                <div class="form-group" novalidate>
@@ -44,12 +39,12 @@
 
 		                <div class="form-group">
 		                    <label>CNPJ</label>
-		                    <input type="text" name="cnpj" class="form-control" placeholder="somente números" maxlength="13" required [(ngModel)]="model.cnpj" #cnpj="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                    <input type="text" name="cnpj" class="form-control" placeholder="somente números" (input)= "formatCnpj()" maxlength="18" required [(ngModel)]="model.cnpj" #cnpj="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
 
 		                <div class="form-group">
 		                    <label>Telefone</label>
-		                    <input type="text" name="telefone" class="form-control" placeholder="somente números" maxlength="11" required="required" [(ngModel)]="model.telefone" #telefone="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                    <input type="text" name="telefone" class="form-control" placeholder="somente números" (input)= "formatTel()" maxlength="15" required="required" [(ngModel)]="model.telefone" #telefone="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
 
 		                <div class="form-group">
@@ -59,7 +54,7 @@
 
 		                <div class="form-group">
 		                    <label>CPF</label>
-		                    <input type="text" name="CPF" id="cpf" class="form-control" ng-model="cpf" maxlength="11" placeholder="somente números" required [(ngModel)]="model.cpf" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
+		                    <input type="text" name="CPF" id="cpf" class="form-control" ng-model="cpf" name="cpf" (input)="formatCpf()" maxlength="14" placeholder="somente números" required [(ngModel)]="model.cpf" #cpf="ngModel" [ngModelOptions]="{ updateOn: 'change'}">
 		                </div>
 
 		                <!-- SUBMIT BUTTON -->
