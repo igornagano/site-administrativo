@@ -33,15 +33,17 @@ export class ColabAlteraComponent implements OnInit {
      if(this.gestor == undefined){
           this.colaboradorService.getDados(this.colaborador).subscribe(
                       data => {
-                        console.log(data);
-                        this.model = data
+                        this.model = data;
+                        this.model['Usuarios']['confsenha'] = this.model['Usuarios']['senha'];
+                   
                       })
    } else{
     var id = this.route.snapshot.paramMap.get('id');
     this.colaboradorService.getDados(id).subscribe(
                       data => {
-                        console.log(data);
                         this.model = data;
+                         this.model['Usuarios']['confsenha'] = this.model['Usuarios']['senha'];
+                        
                         if(this.model['Gestor']['proprietario'] == "S" && id != this.colaborador){
                           alert("Você não tem permissão para alterar esse usuário");
                            this.router.navigate(["/reservas/lista"]); 
@@ -65,6 +67,10 @@ export class ColabAlteraComponent implements OnInit {
      this.colaboradorService.putDados(this.model).subscribe(
                    (data)=>{
                         alert("Dados alterados com sucesso");
+                        if(this.model['id_colaborador'] == this.colaborador){
+                          localStorage.setItem("nome",this.model['Usuarios']['nome']);
+                          window.location.reload();
+                        }
                         this.router.navigate(["/colaborador/dados"]); 
                     }, error=>{
                         alert("Ocorreu um erro alteração")

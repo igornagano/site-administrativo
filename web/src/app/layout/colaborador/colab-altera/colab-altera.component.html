@@ -37,7 +37,8 @@
 		                    </select></span>
 		                </div>		     
 		                <button type="submit" class="btn btn-primary">Enviar</button>
-		                <button type="button" class="btn btn-primary" (click)=" deletar()" *ngIf="colaborador!=model['id_colaborador']">Deletar</button>
+		                <button type="button" class="btn btn-primary" (click)=" deletar()"
+		                 *ngIf="colaborador!=model['id_colaborador']">Deletar</button>
 		                <a [routerLink]="['/colaborador/dados']"><button type="button" class="btn btn-primary">Cancelar</button></a>
 		            </form>	  
 		         </div>  
