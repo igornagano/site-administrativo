@@ -14,8 +14,8 @@ import { Router } from '@angular/router';
 })
 export class EstabAlteraComponent implements OnInit {
 
-  model = {}
-  valores = {}
+  model
+  valores
   constructor(private estabelecimentoService: EstabelecimentoService, private colaboradorService: ColaboradorService, 
     private route: ActivatedRoute, private router: Router) { }
 

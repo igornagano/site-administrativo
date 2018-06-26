@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   animations: [routerTransition()]
 })
 export class EmpresaAlterarComponent implements OnInit {
-  model = {}
+  model
   
   constructor(private empresaService: EmpresaService,private estabelecimentoService: EstabelecimentoService, private colaboradorService: ColaboradorService,  private route: ActivatedRoute, private router: Router) { }
   

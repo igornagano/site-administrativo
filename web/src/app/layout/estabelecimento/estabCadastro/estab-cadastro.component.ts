@@ -17,7 +17,7 @@ export class EstabCadastroComponent implements OnInit {
 
   empresa = localStorage.getItem('empresa');
   valores = localStorage.getItem('valor');
-  model = new Estabelecimento('','',this.empresa,'','');
+  model = new Estabelecimento('','',this.empresa,'','','','');
 
   submitted = false;
 
@@ -69,7 +69,7 @@ export class EstabCadastroComponent implements OnInit {
       alert("Preencha o campo Harario de Fechamento");
       return false
     }
-    if (this.model.cobrar == "") {
+    if (this.model.hora == "") {
       alert("Preencha o campo Cobrar a cada");
       return false
     }    

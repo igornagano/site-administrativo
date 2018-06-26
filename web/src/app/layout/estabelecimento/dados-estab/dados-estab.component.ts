@@ -15,7 +15,7 @@ export class DadosEstabComponent implements OnInit {
 
 	dados={};
   estabelecimento = localStorage.getItem("estabelecimento");
-  model = new Estabelecimento('','','','','');
+  model = new Estabelecimento('','','','','','','');
   
   submitted = false;
 

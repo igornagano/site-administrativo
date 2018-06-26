@@ -73,7 +73,7 @@ constructor(private http: HttpClient, private conf: Conf) {
     	return this.http.post(this.conf.url + "/estabelecimento",this.estabelecimento)
         .pipe(
             map(res=>{
-                    var hora = estabelecimento['cobrar'].split(":");
+                    var hora = estabelecimento['hora'].split(":");
                     var tempo = parseInt(hora[0])*60 + parseInt(hora[1]);                 
                     var dados = {
                         "id_estabelecimento":res['id_estabelecimento'],
